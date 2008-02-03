@@ -620,7 +620,7 @@ BASR3    EQU   *
          LA    R1,1
          AR    R0,R1
          RT1   ABORT
-AR1      ESPIE RESET
+AR1      ESPIE RESET,=F'0'
          WTO   'ESPIE FOR FIXED POINT OVERFLOW OK'
          ESTAE ESTAE_EXIT,PARAM=AR2
          L     R0,=X'80000000'
@@ -641,7 +641,7 @@ AR2      ESTAE 0
          L     R1,=F'-1'
          SR    R0,R1
          RT1   ABORT
-SR1      ESPIE RESET
+SR1      ESPIE RESET,=F'0'
          ESTAE ESTAE_EXIT,PARAM=SR2
          L     R0,=X'80000000'
          L     R1,=F'1'
@@ -712,7 +712,7 @@ SR2      ESTAE 0
          LA    R2,0
          DR    R0,R2
          RT1   ABORT
-DR1      ESPIE RESET
+DR1      ESPIE RESET,=F'0'
          WTO   'ESPIE FOR FIXED POINT DIVIDE OK'
 * 1E   ALR
          L     R0,=F'3'
@@ -2055,7 +2055,7 @@ BAKR3    EQU   *
          LE    R1,EBMIN
          SEBR  R0,R1
          RT1   ABORT
-SEBR1    ESPIE RESET
+SEBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'08' VERIFY DXC
          RT1   CCE
@@ -2102,7 +2102,7 @@ SEBR1    ESPIE RESET
          LE    R1,EBMIN
          SEBR  R0,R1
          RT1   ABORT
-SEBR2    ESPIE RESET
+SEBR2    ESPIE RESET,=F'0'
          EFPC  R0
          CLM   R0,2,=X'08' VERIFY FPCDXC CODE
          RT1   CCE
@@ -2174,7 +2174,7 @@ SEBR2    ESPIE RESET
          LG    R1,=FL8'1'
          AGR   R0,R1
          RT1   ABORT
-AGR1     ESPIE RESET
+AGR1     ESPIE RESET,=F'0'
          ESTAE ESTAE_EXIT,PARAM=AGR2
          LG    R0,=X'8000000000000000'
          LG    R1,=FL8'-1'
@@ -2193,7 +2193,7 @@ AGR2     ESTAE 0
          LG    R1,=FL8'-1'
          SGR   R0,R1
          RT1   ABORT
-SGR1     ESPIE RESET
+SGR1     ESPIE RESET,=F'0'
          ESTAE ESTAE_EXIT,PARAM=SGR2
          LG    R0,=X'8000000000000000'
          LG    R1,=FL8'1'
@@ -5130,7 +5130,7 @@ BRXLG3   EQU   *
          ESPIE SET,ESPIE_EXIT,7,PARAM=SRP1
          ZAP   PWORK,=X'40'
          RT1   ABORT
-SRP1     ESPIE RESET
+SRP1     ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'00' PD DATA EXCEPTION
          RT1   CCE
@@ -5213,7 +5213,7 @@ SRP1     ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=ZAP1
          ZAP   PWORK,=X'00'
          RT1   ABORT
-ZAP1     ESPIE RESET
+ZAP1     ESPIE RESET,=F'0'
          WTO   'ESPIE FOR PACKED DATA EXCEPTION OK'
 * F9   CP
          CP    =P'1',=P'1'
@@ -5248,7 +5248,7 @@ ZAP1     ESPIE RESET
          ESPIE SET,ESPIE_EXIT,10,PARAM=AP1
          AP    PWORK,=P'1'
          RT1   ABORT
-AP1      ESPIE RESET
+AP1      ESPIE RESET,=F'0'
          WTO   'ESPIE FOR PACKED OVERFLOW OK'
 * FB   SP
          ZAP   PWORK,=P'0'
@@ -5264,7 +5264,7 @@ AP1      ESPIE RESET
          ESPIE SET,ESPIE_EXIT,10,PARAM=SP1
          SP    PWORK,=P'1'
          RT1   ABORT
-SP1      ESPIE RESET
+SP1      ESPIE RESET,=F'0'
 * FC   MP
          ZAP   PWORK,=P'2'
          MP    PWORK,=P'123412341234'
@@ -5285,7 +5285,7 @@ SP1      ESPIE RESET
          ZAP   PWORK,=P'1'
          DP    PWORK,=P'0'
          RT1   ABORT
-DP1      ESPIE RESET
+DP1      ESPIE RESET,=F'0'
          WTO   'ESPIE FOR PACKED DIVIDE OK'
 * END
          RT1   END

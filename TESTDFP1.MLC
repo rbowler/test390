@@ -235,7 +235,7 @@ ESPIE_EXIT DS  0H
          LD    R1,DDMAX
          MDTR  R0,R0,R1
          RT1   ABORT
-MDTR1    ESPIE RESET
+MDTR1    ESPIE RESET,=F'0'
          WTO  'ESPIE DFP MDTR OVERFLOW OK'
 * B3D1 DDTR
          LD    2,=DD'600'
@@ -255,7 +255,7 @@ MDTR1    ESPIE RESET
          LD    R5,=DD'0'
          DDTR  R1,R4,R5
          RT1   ABORT
-DDTR1    ESPIE RESET
+DDTR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
@@ -301,7 +301,7 @@ DDTR1    ESPIE RESET
          LD    R1,DDMAX
          ADTR  R0,R0,R1
          RT1   ABORT
-ADTR1    ESPIE RESET
+ADTR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -334,7 +334,7 @@ ADTR1    ESPIE RESET
          ADTR  R4,R4,R5
          SDTR  R4,R4,R5
          RT1   ABORT
-SDTR1    ESPIE RESET
+SDTR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -411,7 +411,7 @@ SDTR1    ESPIE RESET
          LX    R1,LDMAX
          MXTR  R0,R0,R1
          RT1   ABORT
-MXTR1    ESPIE RESET
+MXTR1    ESPIE RESET,=F'0'
          WTO  'ESPIE DFP MXTR OVERFLOW OK'
 * B3D9 DXTR
          LX    4,=LD'600'
@@ -431,7 +431,7 @@ MXTR1    ESPIE RESET
          LX    R5,=LD'0'
          DXTR  R0,R4,R5
          RT1   ABORT
-DXTR1    ESPIE RESET
+DXTR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
@@ -477,7 +477,7 @@ DXTR1    ESPIE RESET
          LX    R1,LDMAX
          AXTR  R0,R0,R1
          RT1   ABORT
-AXTR1    ESPIE RESET
+AXTR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -510,7 +510,7 @@ AXTR1    ESPIE RESET
          AXTR  R4,R4,R5
          SXTR  R4,R4,R5
          RT1   ABORT
-SXTR1    ESPIE RESET
+SXTR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE

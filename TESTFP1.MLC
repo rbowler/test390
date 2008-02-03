@@ -319,7 +319,7 @@ TDCMS    EQU   X'001' TEST FP DATA CLASS MINUS SIGNAL NAN
          LD    R1,=DH'2'  RPI 821 MAKE RESULT LARGER THAN DHMAX
          MDR   R0,R1
          RT1   ABORT
-MDR1     ESPIE RESET
+MDR1     ESPIE RESET,=F'0'
 * 2D   DDR
          LD    R0,=DH'3'
          LD    R1,=DH'2'
@@ -331,7 +331,7 @@ MDR1     ESPIE RESET
          LD    R1,=DH'0'
          DDR   R0,R1
          RT1   ABORT
-DDR1     ESPIE RESET
+DDR1     ESPIE RESET,=F'0'
 * 2E   AWR
          LD    R0,=DH'3'
          LD    R1,=DH'2'
@@ -595,7 +595,7 @@ DDR1     ESPIE RESET
          LE    R1,=EH'0'
          DER   R0,R1
          RT1   ABORT
-DER1     ESPIE RESET
+DER1     ESPIE RESET,=F'0'
 * 3E   AUR
          LE    R0,=EH'3'
          LE    R1,=EH'2'
@@ -724,7 +724,7 @@ DER1     ESPIE RESET
          LD    R0,=DH'1'
          DD    R0,=DH'0'
          RT1   ABORT
-DD1      ESPIE RESET
+DD1      ESPIE RESET,=F'0'
 * 6E   AW
          LD    R0,=DH'3'
          AW    R0,=DH'2'
@@ -809,7 +809,7 @@ DD1      ESPIE RESET
          LE    R0,EHMAX
          AE    R0,EHMAX
          RT1   ABORT
-AE1      ESPIE RESET
+AE1      ESPIE RESET,=F'0'
          WTO   'ESPIE HFP OVERFLOW OK'
 * 7B   SE
          LE    R0,=EH'3'
@@ -832,13 +832,13 @@ AE1      ESPIE RESET
          AE    R0,EHMIN
          SE    R0,EHMIN
          RT1   ABORT
-SE1      ESPIE RESET
+SE1      ESPIE RESET,=F'0'
          WTO   'ESPIE HFP UNDERFLOW OK'
          ESPIE SET,ESPIE_EXIT,14,PARAM=SE2 HFP MANTISSA SIG.
          LE    R0,EHMIN
          SE    R0,EHMIN
          RT1   ABORT
-SE2      ESPIE RESET
+SE2      ESPIE RESET,=F'0'
          WTO   'ESPIE HFP SIGNIFICANCE OK'
          IPM   0
          NILH  0,X'0E00'
@@ -859,7 +859,7 @@ SE2      ESPIE RESET
          LE    R0,=EH'1'
          DE    R0,=EH'0'
          RT1   ABORT
-DE1      ESPIE RESET
+DE1      ESPIE RESET,=F'0'
          WTO   'ESPIE HFP DIVIDE OK'
 * 7E   AU
          LE    R0,=EH'3'
@@ -927,7 +927,7 @@ DE1      ESPIE RESET
          LX    R1,=LH'0'
          DXR   R0,R1
          RT1   ABORT
-DXR1     ESPIE RESET
+DXR1     ESPIE RESET,=F'0'
 * B244 SQDR
          LD    R1,=DH'4'
          SQDR  R0,R1
@@ -1111,7 +1111,7 @@ DXR1     ESPIE RESET
          LE    R1,EBMAX
          KEBR  R0,R1
          RT1   ABORT
-KEBR1    ESPIE RESET
+KEBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -1120,7 +1120,7 @@ KEBR1    ESPIE RESET
          LE    R1,=EB'1'
          KEBR  R0,R1
          RT1   ABORT
-KEBR2    ESPIE RESET
+KEBR2    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -1161,7 +1161,7 @@ KEBR2    ESPIE RESET
          LE    R1,EBMAX
          AEBR  R0,R1
          RT1   ABORT
-AEBR1    ESPIE RESET
+AEBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -1191,7 +1191,7 @@ AEBR1    ESPIE RESET
          AEBR  R0,R1
          SEBR  R0,R1
          RT1   ABORT
-SEBR1    ESPIE RESET
+SEBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -1204,7 +1204,7 @@ SEBR1    ESPIE RESET
          LE    R1,EBMIN
          SEBR  R0,R1
          RT1   ABORT
-SEBR2    ESPIE RESET
+SEBR2    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'08'
          RT1   CCE
@@ -1228,7 +1228,7 @@ SEBR2    ESPIE RESET
          LE    R2,=EB'0'
          DEBR  R0,R2
          RT1   ABORT
-DEBR1    ESPIE RESET
+DEBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
@@ -1363,7 +1363,7 @@ DEBR1    ESPIE RESET
          LD    R1,DBMAX
          KDBR  R0,R1
          RT1   ABORT
-KDBR1    ESPIE RESET
+KDBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -1372,7 +1372,7 @@ KDBR1    ESPIE RESET
          LD    R1,=DB'1'
          KDBR  R0,R1
          RT1   ABORT
-KDBR2    ESPIE RESET
+KDBR2    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -1413,7 +1413,7 @@ KDBR2    ESPIE RESET
          LD    R1,DBMAX
          ADBR  R0,R1
          RT1   ABORT
-ADBR1    ESPIE RESET
+ADBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -1443,7 +1443,7 @@ ADBR1    ESPIE RESET
          ADBR  R0,R1
          SDBR  R0,R1
          RT1   ABORT
-SDBR1    ESPIE RESET
+SDBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -1456,7 +1456,7 @@ SDBR1    ESPIE RESET
          LD    R1,DBMIN
          SDBR  R0,R1
          RT1   ABORT
-SDBR2    ESPIE RESET
+SDBR2    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'08'
          RT1   CCE
@@ -1480,7 +1480,7 @@ SDBR2    ESPIE RESET
          LD    R2,=DB'0'
          DDBR  R0,R2
          RT1   ABORT
-DDBR1    ESPIE RESET
+DDBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
@@ -1729,7 +1729,7 @@ DDBR1    ESPIE RESET
          LX    R1,LBMAX
          KXBR  R0,R1
          RT1   ABORT
-KXBR1    ESPIE RESET
+KXBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -1738,7 +1738,7 @@ KXBR1    ESPIE RESET
          LX    R1,=LB'1'
          KXBR  R0,R1
          RT1   ABORT
-KXBR2    ESPIE RESET
+KXBR2    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -1782,7 +1782,7 @@ KXBR2    ESPIE RESET
          LX    R1,LBMAX
          AXBR  R0,R1
          RT1   ABORT
-AXBR1    ESPIE RESET
+AXBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -1815,7 +1815,7 @@ AXBR1    ESPIE RESET
          AXBR  R0,R1
          SXBR  R0,R1
          RT1   ABORT
-SXBR1    ESPIE RESET
+SXBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -1828,7 +1828,7 @@ SXBR1    ESPIE RESET
          LX    R1,LBMIN
          SXBR  R0,R1
          RT1   ABORT
-SXBR2    ESPIE RESET
+SXBR2    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'08'
          RT1   CCE
@@ -1854,7 +1854,7 @@ SXBR2    ESPIE RESET
          LX    R1,=LB'0'
          DXBR  R0,R1
          RT1   ABORT
-DXBR1    ESPIE RESET
+DXBR1    ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
@@ -2232,7 +2232,7 @@ DXBR1    ESPIE RESET
          LE    R0,=EB'1'
          KEB   R0,EBMAX
          RT1   ABORT
-KEB1     ESPIE RESET
+KEB1     ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -2240,7 +2240,7 @@ KEB1     ESPIE RESET
          LE    R0,EBMIN
          KEB   R0,=EB'1'
          RT1   ABORT
-KEB2     ESPIE RESET
+KEB2     ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
@@ -2300,7 +2300,7 @@ KEB2     ESPIE RESET
          LE    R0,=EB'1'
          DEB   R0,=EB'0'
          RT1   ABORT
-DEB1     ESPIE RESET
+DEB1     ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
@@ -2397,7 +2397,7 @@ DEB1     ESPIE RESET
          LD    R0,=DB'1'
          KDB   R0,DBMAX
          RT1   ABORT
-KDB1     ESPIE RESET
+KDB1     ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'20'
          RT1   CCE
@@ -2405,7 +2405,7 @@ KDB1     ESPIE RESET
          LD    R0,DBMIN
          KDB   R0,=DB'1'
          RT1   ABORT
-KDB2     ESPIE RESET
+KDB2     ESPIE RESET,=F'0'
          STFPC FPCREG
          CLI   FPCDXC,X'10'
          RT1   CCE
