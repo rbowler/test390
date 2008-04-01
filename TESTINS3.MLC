@@ -265,7 +265,9 @@ TESTINS3 RT1   MAIN
 ESPIE_EXIT DS  0H
          USING *,R15
          USING EPIE,R1
-         L     R0,EPIEPARM
+         L     R0,EPIEPSW+4       Load ESPIE old PSW
+         N     R0,=X'80000000'    Preserve AMODE 31 if set
+         O     R0,EPIEPARM
          ST    R0,EPIEPSW+4
          BR    R14
          DROP  R15,R1
