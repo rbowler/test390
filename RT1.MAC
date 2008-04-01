@@ -36,9 +36,10 @@
          AIF   ('&CMD' EQ 'START').RT1START
          AIF   ('&CMD' EQ 'END').RT1END
 &NAME    DS    0H
-&RT1_TOT SETA  &RT1_TOT+1
-         AIF   ('&CMD' EQ 'OK').RT1OK
          AIF   ('&CMD' EQ 'ABORT').RT1ABORT
+&RT1_TOT SETA  &RT1_TOT+1
+         MNOTE *,'****TEST NUMBER &RT1_TOT ****'
+         AIF   ('&CMD' EQ 'OK').RT1OK
          AIF   ('&CLC1' EQ '').NOCLC
          AIF   ('&LL'   EQ '').NOCLCLL
          LA    1,&CLC1
@@ -68,7 +69,7 @@ RT1_ABORT DS 0H
          MVI   RT1_ABORTED,C'T'
          WTO   '&RT1NAME RT1 TESTING ABORTED'
 RT1_END  DS    0H
-         MVC   RT1_DTOT,=X'402020202020'
+         MVC   RT1_DTOT,=X'402020202120'
          ED    RT1_DTOT,RT1_TOT
          WTO   MF=(E,RT1_WTO1)
          CLI   RT1_ABORTED,C'T'
