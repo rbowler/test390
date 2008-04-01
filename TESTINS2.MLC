@@ -255,6 +255,7 @@ BALR1    EQU   *
 BALR2    EQU   *
          RT1   ABORT
 BALR3    EQU   *
+         RT1   OK
          NILH  R1,X'7FFF'
          ST    R1,WORD
          RT1   CCE,WORD,=A(BALR2)
@@ -297,6 +298,7 @@ BCROK    EQU   *
          BSM   R1,R2           SWITCH TO AMODE24
          RT1   ABORT
 BSM1     EQU   *
+         RT1   OK
          CL    R1,=X'80000000' VERIFY WAS AMODE31
          RT1   CCE
          LA    R1,0
@@ -308,6 +310,7 @@ BSM1     EQU   *
          BSM   R1,R2           SWITCH TO AMODE31
          RT1   ABORT
 BSM2     EQU   *
+         RT1   OK
          CL    R1,=X'00000000' VERIFY WAS AMODE24
          RT1   CCE
          LA    R1,0
@@ -325,6 +328,7 @@ BASSM1   EQU   *
 BASSM2    EQU   *
          RT1   ABORT
 BASSM3    EQU   *
+         RT1   OK
          ST    R1,WORD
          RT1   CCE,WORD,=A(BASSM2+X'80000000') VER WAS AMODE31 BEFORE
          L     R2,=A(BASSM5+X'80000000')
@@ -332,6 +336,7 @@ BASSM3    EQU   *
 BASSM4   EQU   *
          RT1   ABORT
 BASSM5   EQU   *
+         RT1   OK
          CL    R1,=A(BASSM4)
          RT1   CCE
          L     R1,=X'00FFFFFF'
@@ -354,6 +359,7 @@ BASR1    EQU   *
 BASR2    EQU   *
          RT1   ABORT
 BASR3    EQU   *
+         RT1   OK
          NILH  R1,X'7FFF'
          ST    R1,WORD
          RT1   CCE,WORD,=A(BASR2)
@@ -626,6 +632,7 @@ BASR3    EQU   *
          AR    R0,R1
          RT1   ABORT
 AR1      ESPIE RESET,=F'0'
+         RT1   OK
          WTO   'ESPIE FOR FIXED POINT OVERFLOW OK'
          ESTAE ESTAE_EXIT,PARAM=AR2
          L     R0,=X'80000000'
@@ -633,6 +640,7 @@ AR1      ESPIE RESET,=F'0'
          AR    R0,R1
          RT1   ABORT
 AR2      ESTAE 0
+         RT1   OK
          WTO   'ESTAE FOR FIXED POINT OVERFLOW OK'
 * 1B   SR
          LA    R0,1
@@ -647,12 +655,14 @@ AR2      ESTAE 0
          SR    R0,R1
          RT1   ABORT
 SR1      ESPIE RESET,=F'0'
+         RT1   OK
          ESTAE ESTAE_EXIT,PARAM=SR2
          L     R0,=X'80000000'
          L     R1,=F'1'
          SR    R0,R1
          RT1   ABORT
 SR2      ESTAE 0
+         RT1   OK
 * 1C   MR
          LA    R0,1        RPI 272
          LA    R1,2
@@ -718,6 +728,7 @@ SR2      ESTAE 0
          DR    R0,R2
          RT1   ABORT
 DR1      ESPIE RESET,=F'0'
+         RT1   OK
          WTO   'ESPIE FOR FIXED POINT DIVIDE OK'
 * 1E   ALR
          L     R0,=F'3'
@@ -855,10 +866,12 @@ EX8      RT1   ABORT
 EX9      BAL   2,EX7
          RT1   ABORT
 EX10     EQU   *
+         RT1   OK
 * 45   BAL
 BAL1     BAL   R1,BAL2
          RT1   ABORT
 BAL2     EQU   *
+         RT1   OK
          NILH  R1,X'7FFF'
          CL    R1,=A(BAL1+4)
          RT1   CCE
@@ -887,6 +900,7 @@ BCT1     LA    R2,1(R2)
          B     BCOK
 BCERR    RT1   ABORT
 BCOK     EQU   *
+         RT1   OK
 * 48   LH
          LH    R0,=H'-2'
          CL    R0,=F'-2'
@@ -922,6 +936,7 @@ BCOK     EQU   *
 BAS1     BAS   R1,BAS2
          RT1   ABORT
 BAS2     EQU   *
+         RT1   OK
          NILH  R1,X'7FFF'
          CL    R1,=A(BAS1+4)
          RT1   CCE
@@ -1126,6 +1141,7 @@ BAS2     EQU   *
          BRXH  R1,R2,BRXH2
 BRXH1    RT1   ABORT
 BRXH2    EQU   *
+         RT1   OK
          CL    R1,=A(1)
          RT1   CCE
          BRXH  R1,R2,BRXH1
@@ -1135,11 +1151,13 @@ BRXH2    EQU   *
          BRXH  R1,R3,BRXH3
          RT1   ABORT
 BRXH3    EQU   *
+         RT1   OK
          CL    R1,=A(1)
          RT1   CCE
          BRXH  R1,R3,BRXH4
          RT1   ABORT
 BRXH4    EQU   *
+         RT1   OK
          CL    R1,=A(0)
          RT1   CCE
          BRXH  R1,R3,BRXH1
@@ -1150,6 +1168,7 @@ BRXH4    EQU   *
          BRXLE R1,R2,BRXLE2
 BRXLE1   RT1   ABORT
 BRXLE2   EQU   *
+         RT1   OK
          CL    R1,=A(2)
          RT1   CCE
          BRXLE R1,R2,BRXLE1
@@ -1159,6 +1178,7 @@ BRXLE2   EQU   *
          BRXLE R1,R3,BRXLE3
          RT1   ABORT
 BRXLE3   EQU   *
+         RT1   OK
          CL    R1,=A(1)
          RT1   CCE
          BRXLE R1,R3,BRXLE1
@@ -1169,6 +1189,7 @@ BRXLE3   EQU   *
          BXH   R1,R2,BXH2
          B     RT1_ABORT
 BXH2     EQU   *
+         RT1   OK
          CL    R1,=A(1)
          RT1   CCE
          BXH   R1,R2,RT1_ABORT
@@ -1178,14 +1199,17 @@ BXH2     EQU   *
          BXH   R1,R3,BXH3
          B     RT1_ABORT
 BXH3     EQU   *
+         RT1   OK
          CL    R1,=A(1)
          RT1   CCE
          BXH   R1,R3,BXH4
          B     RT1_ABORT
 BXH4     EQU   *
+         RT1   OK
          CL    R1,=A(0)
          RT1   CCE
          BXH   R1,R3,RT1_ABORT
+         RT1   OK
          CL    R1,=F'-1'
          RT1   CCE
 * 87   BXLE
@@ -1193,18 +1217,22 @@ BXH4     EQU   *
          BXLE  R1,R2,BXLE2
          B     RT1_ABORT
 BXLE2    EQU   *
+         RT1   OK
          CL    R1,=A(2)
          RT1   CCE
          BXLE  R1,R2,RT1_ABORT
+         RT1   OK
          CL    R1,=A(3)
          RT1   CCE
          LM    R1,R3,=A(0,-10,1)
          BXLE  R1,R3,BXLE3
          RT1   ABORT
 BXLE3    EQU   *
+         RT1   OK
          CL    R1,=A(1)
          RT1   CCE
          BXLE  R1,R3,RT1_ABORT
+         RT1   OK
          CL    R1,=F'2'
          RT1   CCE
 * 88   SRL
@@ -1703,6 +1731,7 @@ BRCOK    EQU   *
 BRAS1    BRAS  R1,BRAS2
          RT1   ABORT
 BRAS2    EQU   *
+         RT1   OK
          NILH  R1,X'7FFF'
          CL    R1,=A(BRAS1+4)
          RT1   CCE
@@ -1936,6 +1965,7 @@ BRCTG1   LA    R2,1(R2)
 PC1      WTO   'PC1 SUB CALLED'
          PR
 PC2      EQU   *
+         RT1   OK
 .NOPCTST ANOP
 * B222 IPM
          SR    0,0
@@ -2063,6 +2093,7 @@ BAKR3    EQU   *
          SEBR  R0,R1
          RT1   ABORT
 SEBR1    ESPIE RESET,=F'0'
+         RT1   OK
          STFPC FPCREG
          CLI   FPCDXC,X'08' VERIFY DXC
          RT1   CCE
@@ -2110,6 +2141,7 @@ SEBR1    ESPIE RESET,=F'0'
          SEBR  R0,R1
          RT1   ABORT
 SEBR2    ESPIE RESET,=F'0'
+         RT1   OK
          EFPC  R0
          CLM   R0,2,=X'08' VERIFY FPCDXC CODE
          RT1   CCE
@@ -2182,12 +2214,14 @@ SEBR2    ESPIE RESET,=F'0'
          AGR   R0,R1
          RT1   ABORT
 AGR1     ESPIE RESET,=F'0'
+         RT1   OK
          ESTAE ESTAE_EXIT,PARAM=AGR2
          LG    R0,=X'8000000000000000'
          LG    R1,=FL8'-1'
          AGR   R0,R1
          RT1   ABORT
 AGR2     ESTAE 0
+         RT1   OK
 * B909 SGR
          LG    R0,=FL8'1'
          LG    R1,=FL8'3'
@@ -2201,12 +2235,14 @@ AGR2     ESTAE 0
          SGR   R0,R1
          RT1   ABORT
 SGR1     ESPIE RESET,=F'0'
+         RT1   OK
          ESTAE ESTAE_EXIT,PARAM=SGR2
          LG    R0,=X'8000000000000000'
          LG    R1,=FL8'1'
          SGR   R0,R1
          RT1   ABORT
 SGR2     ESTAE 0
+         RT1   OK
 * B90A ALGR
          LG    R0,=FL8'3'
          LG    R2,=FL8'2'
@@ -3208,6 +3244,7 @@ BRCLOK   EQU   *
 BRASL1   BRASL R1,BRASL2
          RT1   ABORT
 BRASL2   EQU   *
+         RT1   OK
          NILH  R1,X'7FFF'
          CL    R1,=A(BRASL1+6)
          RT1   CCE
@@ -5056,6 +5093,7 @@ BXLEG3   EQU   *
          BRXHG R1,R2,BRXHG2
 BRXHG1   RT1   ABORT
 BRXHG2   EQU   *
+         RT1   OK
          CLG   R1,=AD(1)
          RT1   CCE
          BRXHG R1,R2,BRXHG1
@@ -5065,11 +5103,13 @@ BRXHG2   EQU   *
          BRXHG R1,R3,BRXHG3
          RT1   ABORT
 BRXHG3   EQU   *
+         RT1   OK
          CLG   R1,=AD(1)
          RT1   CCE
          BRXHG R1,R3,BRXHG4
          RT1   ABORT
 BRXHG4   EQU   *
+         RT1   OK
          CLG   R1,=AD(0)
          RT1   CCE
          BRXHG R1,R3,BRXHG1
@@ -5080,6 +5120,7 @@ BRXHG4   EQU   *
          BRXLG R1,R2,BRXLG2
 BRXLG1   RT1   ABORT
 BRXLG2   EQU   *
+         RT1   OK
          CLG   R1,=AD(2)
          RT1   CCE
          BRXLG R1,R2,BRXLG1
@@ -5089,6 +5130,7 @@ BRXLG2   EQU   *
          BRXLG R1,R3,BRXLG3
          RT1   ABORT
 BRXLG3   EQU   *
+         RT1   OK
          CLG   R1,=AD(1)
          RT1   CCE
          BRXLG R1,R3,BRXLG1
@@ -5138,6 +5180,7 @@ BRXLG3   EQU   *
          ZAP   PWORK,=X'40'
          RT1   ABORT
 SRP1     ESPIE RESET,=F'0'
+         RT1   OK
          STFPC FPCREG
          CLI   FPCDXC,X'00' PD DATA EXCEPTION
          RT1   CCE
@@ -5218,9 +5261,11 @@ SRP1     ESPIE RESET,=F'0'
          ZAP   PWORK,=P'-1'
          RT1   CCL
          ESPIE SET,ESPIE_EXIT,7,PARAM=ZAP1
+         RT1   OK
          ZAP   PWORK,=X'00'
          RT1   ABORT
 ZAP1     ESPIE RESET,=F'0'
+         RT1   OK
          WTO   'ESPIE FOR PACKED DATA EXCEPTION OK'
 * F9   CP
          CP    =P'1',=P'1'
@@ -5256,6 +5301,7 @@ ZAP1     ESPIE RESET,=F'0'
          AP    PWORK,=P'1'
          RT1   ABORT
 AP1      ESPIE RESET,=F'0'
+         RT1   OK
          WTO   'ESPIE FOR PACKED OVERFLOW OK'
 * FB   SP
          ZAP   PWORK,=P'0'
@@ -5272,6 +5318,7 @@ AP1      ESPIE RESET,=F'0'
          SP    PWORK,=P'1'
          RT1   ABORT
 SP1      ESPIE RESET,=F'0'
+         RT1   OK
 * FC   MP
          ZAP   PWORK,=P'2'
          MP    PWORK,=P'123412341234'
@@ -5293,6 +5340,7 @@ SP1      ESPIE RESET,=F'0'
          DP    PWORK,=P'0'
          RT1   ABORT
 DP1      ESPIE RESET,=F'0'
+         RT1   OK
          WTO   'ESPIE FOR PACKED DIVIDE OK'
 * END
          RT1   END
