@@ -170,6 +170,7 @@ TRTTF1V2 DC    CE'AABB9999' RESULT WITH STOP ON 3RD ENTRY
 TRTTF2   DC    X'0100010101020103'  EOD IN 3RD ENTRY
 * START TESTS
          RT1   START
+         AGO   .NOPRTST    <== Bypass PC/PR linkage test
 * 0101 PR
          LA    0,1
          LA    1,1
@@ -221,6 +222,7 @@ PR2      EQU   *
          RT1   CCE
          CLC   EREGGSAV,=A(111,222,333,444)
          RT1   CCE
+.NOPRTST ANOP
 * 010C SAM24
          SAM24
          L     1,=A(X'FFFFFF')
@@ -1925,6 +1927,7 @@ BRCTG1   LA    R2,1(R2)
          STCK  PWORK
          CLG   R0,PWORK
          RT1   CCL        VERIFY UNIQUE
+         AGO   .NOPCTST    <== Bypass PC/PR linkage test
 * B218 PC
          PC    PC1
          B     PC2
@@ -1932,6 +1935,7 @@ BRCTG1   LA    R2,1(R2)
 PC1      WTO   'PC1 SUB CALLED'
          PR
 PC2      EQU   *
+.NOPCTST ANOP
 * B222 IPM
          SR    0,0
          IPM   0
