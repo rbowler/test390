@@ -499,6 +499,7 @@ BASR3    EQU   *
          RT1   CCH
          CL    R0,=F'1'
          RT1   CCE
+         SPM   R0
          L     R1,=X'80000000'
          LPR   R0,R1
          RT1   CC3
