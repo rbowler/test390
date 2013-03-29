@@ -32,50 +32,73 @@ LD       EQU   10
          RT1   START
          MACRO
          TESTPFPO &FP1_TYPE,&FP2_TYPE,&NUM
-       AIF   ('&FP2_TYPE'(1,1) EQ 'E')
+         AIF   ('&FP2_TYPE'(1,1) EQ 'E').FP2E
+         AIF   ('&FP2_TYPE'(1,1) EQ 'D').FP2D
+         AGO   .FP2X
+.FP2E    ANOP  ,
          LE    F4,=&FP2_TYPE'&NUM'
-       AELSEIF   ('&FP2_TYPE'(1,1) EQ 'D')
+         AGO   .FP2Z
+.FP2D    ANOP  ,
          LD    F4,=&FP2_TYPE'&NUM'
-       AELSE
+         AGO   .FP2Z
+.FP2X    ANOP  ,
          LX    F4,=&FP2_TYPE'&NUM'
-       AEND
+.FP2Z    ANOP  ,
          L     R0,=AL1(1,&FP1_TYPE,&FP2_TYPE,0)
          SER   F0,F0 FORCE REG AND CACHE TO ZERO
          SER   F2,F2 FORCE REG AND CACHE TO ZERO
          PFPO
-       AIF   ('&FP1_TYPE'(1,1) EQ 'E')
-        AIF   ('&FP1_TYPE'(2,1) EQ 'H')
+         AIF   ('&FP1_TYPE'(1,1) EQ 'E').FP1E
+         AIF   ('&FP1_TYPE'(1,1) EQ 'D').FP1D
+         AGO   .FP1X
+.FP1E    ANOP  ,
+         AIF   ('&FP1_TYPE'(2,1) EQ 'H').FP1EH
+         AIF   ('&FP1_TYPE'(2,1) EQ 'B').FP1EB
+         AGO   .FP1ET
+.FP1EH   ANOP  ,
          CE    F0,=&FP1_TYPE'&NUM'
-        AELSEIF   ('&FP1_TYPE'(2,1) EQ 'B')
+         AGO   .FP1Z
+.FP1EB   ANOP  ,
          CEB   F0,=&FP1_TYPE'&NUM'
-        AELSE
+         AGO   .FP1Z
+.FP1ET   ANOP  ,
          STE   F0,WORD
          LE    F1,WORD
          LDETR F1,F1,0
          LD    F4,=DD'&NUM'
          CDTR  F1,F4
-        AEND
-       AELSEIF   ('&FP1_TYPE'(1,1) EQ 'D')
-        AIF   ('&FP1_TYPE'(2,1) EQ 'H')
+         AGO   .FP1Z
+.FP1D    ANOP  ,
+         AIF   ('&FP1_TYPE'(2,1) EQ 'H').FP1DH
+         AIF   ('&FP1_TYPE'(2,1) EQ 'B').FP1DB
+         AGO   .FP1DT
+.FP1DH   ANOP  ,
          CD    F0,=&FP1_TYPE'&NUM'
-        AELSEIF   ('&FP1_TYPE'(2,1) EQ 'B')
+         AGO   .FP1Z
+.FP1DB   ANOP  ,
          CDB   F0,=&FP1_TYPE'&NUM'
-        AELSE
+         AGO   .FP1Z
+.FP1DT   ANOP  ,
          STD   F0,DWORD
          LD    F1,DWORD
          LD    F4,=&FP1_TYPE'&NUM'
          CDTR  F1,F4
-        AEND
-       AELSE
+         AGO   .FP1Z
+.FP1X    ANOP  ,
          LX    F4,=&FP1_TYPE'&NUM'
-        AIF   ('&FP1_TYPE'(2,1) EQ 'H')
+         AIF   ('&FP1_TYPE'(2,1) EQ 'H').FP1XH
+         AIF   ('&FP1_TYPE'(2,1) EQ 'B').FP1XB
+         AGO   .FP1XT
+.FP1XH   ANOP  ,
          CXR   F0,F4
-        AELSEIF   ('&FP1_TYPE'(2,1) EQ 'B')
+         AGO   .FP1Z
+.FP1XB   ANOP  ,
          CXBR  F0,F4
-        AELSE
+         AGO   .FP1Z
+.FP1XT   ANOP  ,
          CXTR  F0,F4
-        AEND
-       AEND
+         AGO   .FP1Z
+.FP1Z    ANOP  ,
          RT1   CCE
          MEND
          TESTPFPO EH,EH,123
