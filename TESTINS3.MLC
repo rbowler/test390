@@ -676,9 +676,9 @@ MVC3     MVC   PWORK(0),=C'1234'
          CHHSI =H'1',-1
          RT1   CCH
 * E555   CLHHSI
-         CLHHSI =H'-1',-1
+         CLHHSI =H'-1',X'FFFF'
          RT1   CCE
-         CLHHSI =H'1',-1
+         CLHHSI =H'1',X'FFFF'
          RT1   CCL
 * E558   CGHSI
          CGHSI =FL8'-1',-1
@@ -686,9 +686,9 @@ MVC3     MVC   PWORK(0),=C'1234'
          CGHSI =FL8'1',-1
          RT1   CCH
 * E559   CLGHSI
-         CLGHSI =FL2'0,0,0,-1',-1
+         CLGHSI =FL2'0,0,0,-1',X'FFFF'
          RT1   CCE
-         CLGHSI =FL8'1',-1
+         CLGHSI =FL8'1',X'FFFF'
          RT1   CCL
 * E55C   CHSI
          CHSI  =F'-1',-1
@@ -696,9 +696,9 @@ MVC3     MVC   PWORK(0),=C'1234'
          CHSI  =F'1',-1
          RT1   CCH
 * E55D   CLFHSI
-         CLFHSI =FL2'0,-1',-1
+         CLFHSI =FL2'0,-1',X'FFFF'
          RT1   CCE
-         CLFHSI =F'1',-1
+         CLFHSI =F'1',X'FFFF'
          RT1   CCL
 * EB4C   ECAG  EXTRACT CACHE ATTRIBUTE NOT YET
 * EB6A   ASI
