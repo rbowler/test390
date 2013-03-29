@@ -213,7 +213,7 @@ PR1      EQU   *
 PR2      EQU   *
          CLI   ESTACC,1 PC TYPE
          RT1   CCE
-         CLC   ESTAPSW,=AL8(PCRET1)
+         CLC   ESTAPSW(8),=A(0,PCRET1)
          RT1   CCE           RPI 1026
          CLC   EREGSAVE,=A(222,444)
          RT1   CCE
@@ -1956,13 +1956,13 @@ BAKR1    WTO   'BAKR1 SUB CALLED'
 BAKR2    EQU   *
          CLI   ESTACC,0 BAKR TYPE
          RT1   CCE
-         CLC   ESTAPSW,=AL8(BAKR2)
+         CLC   ESTAPSW(8),=A(0,BAKR2)
          RT1   CCE           RPI 1026
          BAKR  0,R2
 BAKR3    EQU   *
          CLI   ESTACC,0 BAKR TYPE
          RT1   CCE
-         CLC   ESTAPSW,=AL8(BALR3)
+         CLC   ESTAPSW(8),=A(0,BALR3)
          RT1   CCE           RPI 1026
 * B249 EREG    R1,R2 RESTORE 32 BIT REGISTERS SEE PC/BAKR
 * B24A ESTA    R1,R1 (SEE PC AND BAKR TESTS WITH ESTA,EREG,EREGG
