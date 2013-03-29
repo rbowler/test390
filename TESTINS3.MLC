@@ -657,7 +657,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CCE
 * E544   MVHHI
          MVC   PWORK,=C'12345678'
-         MVHHI PWORK+2,C'AB'
+         MVHHI PWORK+2,-15934 (C'AB')
          CLC   PWORK,=C'12AB5678'
          RT1   CCE
 * E548   MVGHI
