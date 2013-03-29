@@ -5,22 +5,22 @@
 * Author - Don Higgins                                              *
 * Date   - 03/03/08                                                 *
 *********************************************************************
-* 03/03/08 RPI 817 COPY FROM TESTINS2 AND ADD Z10 INSTRUCTION TESTS  
+* 03/03/08 RPI 817 COPY FROM TESTINS2 AND ADD Z10 INSTRUCTION TESTS
 * 03/03/08 RPI 817 ADD Z10 COMP AND TRAP   B960-EC73 USING TESTCAT MAC
 * 03/03/08 RPI 817 ADD Z10 COMP AND BRANCH EC64-ECFF USING TESTCAB MAC
-* 03/08/08 RPI 817 ADD Z10 MISC PROBLEM STATE INSTR. TESTS              
-* 03/15/08 RPI 822 CORRECT BRC 1,*-4 TO BRC 1,*-4 FOR TRTE/TRTRE        
-* 04/22/08 RPI 833 ADD STRING QUOTES FOR HLASM COMPATIBILITY 
+* 03/08/08 RPI 817 ADD Z10 MISC PROBLEM STATE INSTR. TESTS
+* 03/15/08 RPI 822 CORRECT BRC 1,*-4 TO BRC 1,*-4 FOR TRTE/TRTRE
+* 04/22/08 RPI 833 ADD STRING QUOTES FOR HLASM COMPATIBILITY
 * 06/09/08 RPI 859 CHANGES FOR Z10/HLASM ASSEMBLY AND EXECUTION
 *          1) CHANGE MVCOS TO ISSUE SPEC. EXCEPT. FOR OVERLAP (EXT.)
-*          2) CHANGE CLHHSI =H'-1',-1 TO CLHHSI =H'-1',X'FFFF' 
+*          2) CHANGE CLHHSI =H'-1',-1 TO CLHHSI =H'-1',X'FFFF'
 *          3) CORRECT ALSI, ALGSI TESTS FOR SIGN EXTENDED I2
-*          4) ADD ADDITIONAL ASI AND AGSI TESTS FOR NEG. I2 
+*          4) ADD ADDITIONAL ASI AND AGSI TESTS FOR NEG. I2
 *          5) CHANGE TESTCAT FOR POSITIVE IMMED. VALUES FOR HLASM
 *             AND CHANGE CGIT,CLGIT,CIT,CLFIT IMMED. LENGTH TO 16
 *          6) CHANGE TESTCAB FOR POSITIVE IMMED. VALUES FOR HLASM
-* 06/20/08 RPI 845 change EPIED to IHAEPIE (NOTE ESPIEPSW OFFSET CHG)      
-* 06/21/08 RPI 845 change ESTAD to IHASDWA AND REMOVE ESTAPSW REF          
+* 06/20/08 RPI 845 change EPIED to IHAEPIE (NOTE ESPIEPSW OFFSET CHG)
+* 06/21/08 RPI 845 change ESTAD to IHASDWA AND REMOVE ESTAPSW REF
 *********************************************************************
          PRINT DATA
          TITLE 'TESTINS3 - UNIT TEST Z10 EZ390 PROBLEM STATE INSTR.'
@@ -34,7 +34,7 @@
 * SEE TESTFP1  FOR HFP AND BFP FLOATING POINT INSTR TESTS
 * SEE TESTDFP1 FOR DFP FLOATING POINT INSTR TESTS
 *********************************************************************
-         MACRO 
+         MACRO
          TESTCAT &OP,&TYPE,&L1,&L2
 .*
 .* TEST COMPARE AND TRAP INSTRUCTIONS WITH EXTENDED MNEMONICS
@@ -59,7 +59,7 @@
          AIF   (&L2 GT 16).INIT
 &VH      SETC  '65535'
          AIF   (&L2 GT 8).INIT
-&VH      SETC  '255'       
+&VH      SETC  '255'
 .* END OF FIX
 .INIT    ANOP
 .R1      ANOP
@@ -122,17 +122,17 @@
 &OP.L_E&CAT ESTAE 0
          RT1   OK
          ESTAE ESTAE_EXIT,PARAM=&OP.NE_E&CAT
-&OP.NE_T&CAT &OP.NE   R5,&OP2L   
+&OP.NE_T&CAT &OP.NE   R5,&OP2L
          RT1   ABORT
 &OP.NE_E&CAT ESTAE 0
          RT1   OK
          ESTAE ESTAE_EXIT,PARAM=&OP.NH_E&CAT
-&OP.NH_T&CAT &OP.NH   R5,&OP2H       
+&OP.NH_T&CAT &OP.NH   R5,&OP2H
          RT1   ABORT
 &OP.NH_E&CAT ESTAE 0
          RT1   OK
          ESTAE ESTAE_EXIT,PARAM=&OP.NL_E&CAT
-&OP.NL_T&CAT &OP.NL   R5,&OP2L      
+&OP.NL_T&CAT &OP.NL   R5,&OP2L
          RT1   ABORT
 &OP.NL_E&CAT ESTAE 0
          RT1   OK
@@ -156,8 +156,8 @@
 &OP.NL_NT&CAT &OP.NL   R5,&OP2H
          RT1   OK
          ESTAE 0
-         MEND   
-         MACRO 
+         MEND
+         MACRO
          TESTCAB &OP,&TYPE,&L1,&L2
 .*
 .* TEST COMPARE AND BRANCH INSTRUCTIONS WITH EXTENDED MNEMONICS
@@ -182,7 +182,7 @@
          AIF   (&L2 GT 16).INIT
 &VH      SETC  '65535'
          AIF   (&L2 GT 8).INIT
-&VH      SETC  '255'       
+&VH      SETC  '255'
 .* END OF FIX
 .INIT    ANOP
 .R1      ANOP
@@ -259,14 +259,14 @@
          RT1   OK
 &OP.NL_NB&CAB &OP.NL   R5,&OP2H,RT1_ABORT
          RT1   OK
-         MEND   
+         MEND
 TESTINS3 RT1   MAIN
          EQUREGS
 ESPIE_EXIT DS  0H
          USING *,R15
          USING EPIE,R1
          L     R0,EPIEPARM
-         ST    R0,EPIEPSW+4                                   
+         ST    R0,EPIEPSW+4
          BR    R14
          DROP  R15,R1
 ESTAE_EXIT DS  0H
@@ -291,7 +291,7 @@ FPCDXC   EQU   FPCREG+2 REASON CODES FOR 0C7 DATA EXCEPTIONS
 *********************************************************************
 TRT_F1    DC    C'1234X6'  1 BYTE ARG AND 1 BYTE TAB
 TRT_TAB1  DC    0D,240X'FF',10X'00',6X'FF'
-TRT_F2    DC    C'123X56'  1 BYTE ARG AND 2 BYTE TABLE 
+TRT_F2    DC    C'123X56'  1 BYTE ARG AND 2 BYTE TABLE
 TRT_TAB2  DC    0D,240XL2'FFFF',10XL2'0000',6XL2'FFFF'
 TRT_F3    DC    0XL8,AL2(0,1,2,3) 2 BYTE ARG AND 1 BYTE TAB 65K
 TRT_TAB3  DC    0D,AL1(0,0,X'33',0)  OMITTING REST OF 65K TABLE
@@ -466,54 +466,54 @@ TRT_TAB4  DC    0D,AL2(0,0,X'4444',0)  OMITTING REST OF 128K TABLE
          LLHRL R5,=H'-1'
          CL    R5,=X'0000FFFF'
          RT1   CCE
-* C44    LGHRL  
+* C44    LGHRL
          LG    R5,=C'12345678'
          LGHRL R5,=H'-1'
          CLG   R5,=FL8'-1'
          RT1   CCE
-* C45    LHRL   
+* C45    LHRL
          LG    R5,=C'12345678'
          LHRL  R5,=H'-1'
          CL    R5,=F'-1'
          RT1   CCE
-* C46    LLGHRL 
+* C46    LLGHRL
          LG    R5,=C'12345678'
          LLGHRL R5,=H'-1'
          CLG   R5,=XL8'000000000000FFFF'
          RT1   CCE
-* C47    STHRL  
+* C47    STHRL
          LG    R5,=C'12345678'
-         STHRL R5,PWORK 
+         STHRL R5,PWORK
          CLC   PWORK(2),=C'78'
          RT1   CCE
-* C48    LGRL   
+* C48    LGRL
          LG    R5,=C'12345678'
          LGRL  R5,=FL8'-1'
          CLG   R5,=FL8'-1'
          RT1   CCE
-* C4B    STGRL  
+* C4B    STGRL
          LG    R5,=C'12345678'
-         STGRL R5,PWORK 
+         STGRL R5,PWORK
          CLC   PWORK,=CL8'12345678'
          RT1   CCE
-* C4C    LGFRL  
+* C4C    LGFRL
          LG    R5,=C'12345678'
-         LGFRL R5,=F'-1' 
+         LGFRL R5,=F'-1'
          CLG   R5,=FL8'-1'
          RT1   CCE
-* C4D    LRL     
+* C4D    LRL
          LG    R5,=C'12345678'
          LRL   R5,=F'-1'
          CL    R5,=F'-1'
          RT1   CCE
-* C4E    LLGFRL 
+* C4E    LLGFRL
          LG    R5,=C'12345678'
-         LLGFRL R5,=F'-1' 
+         LLGFRL R5,=F'-1'
          CLG   R5,=X'00000000FFFFFFFF'
          RT1   CCE
 * C4F    STRL
          LG    R5,=C'12345678'
-         STRL  R5,PWORK 
+         STRL  R5,PWORK
          CLC   PWORK(4),=C'5678'
          RT1   CCE
 * C60    EXRL
@@ -557,14 +557,14 @@ MVC3     MVC   PWORK(0),=C'1234'
          CGRL  R5,=X'F1F2F3F4F5F6F7F8'
          RT1   CCE
          LG    R5,=XL8'F1F2F3F4F5F6F7F8'
-         CGRL  R5,=FL8'1'                   
+         CGRL  R5,=FL8'1'
          RT1   CCL
 * C6A    CLGRL
          LG    R5,=XL8'F1F2F3F4F5F6F7F8'
          CLGRL R5,=X'F1F2F3F4F5F6F7F8'
          RT1   CCE
          LG    R5,=XL8'F1F2F3F4F5F6F7F8'
-         CLGRL R5,=FL8'1'                  
+         CLGRL R5,=FL8'1'
          RT1   CCH
 * C6C    CGFRL
          LG    R5,=FL8'-1'
@@ -573,21 +573,21 @@ MVC3     MVC   PWORK(0),=C'1234'
          LG    R5,=FL8'-1'
          CGFRL R5,=F'1'
          RT1   CCL
-* C6D    CRL     
+* C6D    CRL
          LG    R5,=2F'0,-1'
          CRL   R5,=F'-1'
          RT1   CCE
          LG    R5,=2F'0,-1'
          CRL   R5,=F'1'
          RT1   CCL
-* C6E    CLGFRL 
+* C6E    CLGFRL
          LG    R5,=2F'0,-1'
          CLGFRL R5,=F'-1'
          RT1   CCE
          LG    R5,=2F'0,-1'
          CLGFRL R5,=F'1'
          RT1   CCH
-* C6F    CLRL    
+* C6F    CLRL
          LG    R5,=2F'0,-1'
          CLRL  R5,=F'-1'
          RT1   CCE
@@ -628,7 +628,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CCH
          CLG   R5,=FL8'1'
          RT1   CCE
-* E334   CGH     
+* E334   CGH
          LG    R5,=FL8'-1'
          CGH   R5,=H'-1'
          RT1   CCE
@@ -645,12 +645,12 @@ MVC3     MVC   PWORK(0),=C'1234'
          CL    R6,=A(1)
          RT1   CCE
          CL    R7,=A(0)
-         RT1   CCE     
-* E375   LAEY   
+         RT1   CCE
+* E375   LAEY
          LAEY  R5,123
          CL    R5,=A(123)
          RT1   CCE
-* E37C   MHY     
+* E37C   MHY
          L     R5,=A(10000)
          MHY   R5,=H'1000'
          CL    R5,=A(10000000)
@@ -659,49 +659,49 @@ MVC3     MVC   PWORK(0),=C'1234'
          MVC   PWORK,=C'12345678'
          MVHHI PWORK+2,C'AB'
          CLC   PWORK,=C'12AB5678'
-         RT1   CCE   
-* E548   MVGHI   
+         RT1   CCE
+* E548   MVGHI
          MVC   PWORK,=C'12345678'
          MVGHI PWORK,-1
-         CLC   PWORK,=FL8'-1'     
-         RT1   CCE   
-* E54C   MVHI    
+         CLC   PWORK,=FL8'-1'
+         RT1   CCE
+* E54C   MVHI
          MVC   PWORK,=C'12345678'
-         MVHI  PWORK+2,-1   
+         MVHI  PWORK+2,-1
          CLC   PWORK,=X'F1F2FFFFFFFFF7F8'
-         RT1   CCE   
-* E554   CHHSI   
-         CHHSI =H'-1',-1   
-         RT1   CCE   
-         CHHSI =H'1',-1   
-         RT1   CCH   
-* E555   CLHHSI 
-         CLHHSI =H'-1',-1   
-         RT1   CCE   
-         CLHHSI =H'1',-1   
-         RT1   CCL   
-* E558   CGHSI  
-         CGHSI =FL8'-1',-1   
-         RT1   CCE   
-         CGHSI =FL8'1',-1   
-         RT1   CCH   
-* E559   CLGHSI 
-         CLGHSI =FL2'0,0,0,-1',-1   
-         RT1   CCE   
-         CLGHSI =FL8'1',-1   
-         RT1   CCL   
-* E55C   CHSI   
-         CHSI  =F'-1',-1   
-         RT1   CCE   
-         CHSI  =F'1',-1   
-         RT1   CCH   
-* E55D   CLFHSI 
-         CLFHSI =FL2'0,-1',-1   
-         RT1   CCE   
-         CLFHSI =F'1',-1  
-         RT1   CCL   
-* EB4C   ECAG  EXTRACT CACHE ATTRIBUTE NOT YET 
-* EB6A   ASI    
+         RT1   CCE
+* E554   CHHSI
+         CHHSI =H'-1',-1
+         RT1   CCE
+         CHHSI =H'1',-1
+         RT1   CCH
+* E555   CLHHSI
+         CLHHSI =H'-1',-1
+         RT1   CCE
+         CLHHSI =H'1',-1
+         RT1   CCL
+* E558   CGHSI
+         CGHSI =FL8'-1',-1
+         RT1   CCE
+         CGHSI =FL8'1',-1
+         RT1   CCH
+* E559   CLGHSI
+         CLGHSI =FL2'0,0,0,-1',-1
+         RT1   CCE
+         CLGHSI =FL8'1',-1
+         RT1   CCL
+* E55C   CHSI
+         CHSI  =F'-1',-1
+         RT1   CCE
+         CHSI  =F'1',-1
+         RT1   CCH
+* E55D   CLFHSI
+         CLFHSI =FL2'0,-1',-1
+         RT1   CCE
+         CLFHSI =F'1',-1
+         RT1   CCL
+* EB4C   ECAG  EXTRACT CACHE ATTRIBUTE NOT YET
+* EB6A   ASI
          MVC   WORD,=F'12'
          ASI   WORD,12
          RT1   CCH
@@ -722,7 +722,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC1
          CLC   WORD,=F'-12'
          RT1   CCE
-* EB6E   ALSI    
+* EB6E   ALSI
          MVC   WORD,=F'12'
          ALSI  WORD,12
          RT1   CC1
@@ -743,7 +743,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC3 NZ,B
          CLC   WORD,=F'-1'
          RT1   CCE
-* EB7A   AGSI   
+* EB7A   AGSI
          MVC   DWORD,=FL8'12'
          AGSI  DWORD,12
          RT1   CCH
@@ -754,7 +754,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC0
          CLC   DWORD,=FL8'0'
          RT1   CCE
-* EB7E   ALGSI   
+* EB7E   ALGSI
          MVC   DWORD,=FL8'12'
          ALGSI DWORD,12
          RT1   CC1
@@ -794,7 +794,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC1
          CLG   R5,=C'A234567B'
          RT1   CCE
-* EC54T  RNSBGT 
+* EC54T  RNSBGT
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
          RNSBGT R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND AND WITH F1= A
@@ -819,10 +819,10 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC0
          CLG   R5,=C'12345672'
          RT1   CCE
-* EC55   RISBG   
+* EC55   RISBG
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
-         RISBG R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND INSERT       
+         RISBG R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND INSERT
          RT1   CC1
          CLG   R5,=C'C2345678'
          RT1   CCE
@@ -832,7 +832,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC1
          CLG   R5,=C'1234C678'
          RT1   CCE
-* EC55Z  RISBGZ 
+* EC55Z  RISBGZ
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
          RISBGZ R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND INSERT 0'S
@@ -845,19 +845,19 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC2
          CLG   R5,=X'00000000C3000000'
          RT1   CCE
-         LG    R5,=FL8'-1'     
+         LG    R5,=FL8'-1'
          LG    R6,=C'ABCDEFGC'
          RISBGZ R5,R6,32,39,24  MOVE C TO F5 AND INSERT 0'S
          RT1   CC2
          CLG   R5,=X'00000000C3000000'
          RT1   CCE
-         LG    R5,=FL8'-1'     
+         LG    R5,=FL8'-1'
          LG    R6,=X'FFFFFFFFFFFFFF00'
          RISBGZ R5,R6,32,39,24  MOVE C TO F5 AND INSERT 0'S
-         RT1   CC0  
+         RT1   CC0
          CLG   R5,=X'0000000000000000'
          RT1   CCE
-* EC56   ROSBG   
+* EC56   ROSBG
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
          ROSBG R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND OR WITH F1= 3
@@ -876,7 +876,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC1
          CLG   R5,=C'12345673'
          RT1   CCE
-* EC56T  ROSBGT  
+* EC56T  ROSBGT
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
          ROSBGT R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND OR WITH F1= 3
@@ -901,7 +901,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC0
          CLG   R5,=X'00FFFFFFFFFFFF00'
          RT1   CCE
-* EC57   RXSBG  
+* EC57   RXSBG
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
          RXSBG R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND XOR WITH F1= 2
@@ -926,7 +926,7 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CC0
          CLG   R5,=X'00F2F3F4F5F6F700'
          RT1   CCE
-* EC57T  RXSBGT 
+* EC57T  RXSBGT
          LG    R5,=C'12345678'
          LG    R6,=C'ABCDEFGC'
          RXSBGT R5,R6,0,7,64-8  MOVE C TO FIRST CHAR AND XOR WITH F1= 2
@@ -966,24 +966,24 @@ MVC3     MVC   PWORK(0),=C'1234'
 * EC76 CRJ R1,R2,M3,I4 COMPARE R32 AND BRANCH RELATIVE
          TESTCAB CRJ,A,32,32
 * EC7C CGIJ R1,I2,M3,I4 COMPARE IMMEDIATE R64 AND BRANCH RELATIVE
-         TESTCAB CGIJ,A,64,8 
+         TESTCAB CGIJ,A,64,8
 * EC7D CLGIJ R1,I2,M3,I4 COMPARE LOG IMMEDIATE R64 AND BRANCH RELATIVE
-         TESTCAB CLGIJ,L,64,8                             
+         TESTCAB CLGIJ,L,64,8
 * EC7E CIJ R1,I2,M3,I4 COMPARE IMMEDIATE R32 AND BRANCH RELATIVE
-         TESTCAB CIJ,A,32,8                                 
+         TESTCAB CIJ,A,32,8
 * EC7F CLIJ R1,I2,M3,I4 COMPARE LOG IMMEDIATE R32 AND BRANCH RELATIVE
-         TESTCAB CLIJ,L,32,8                                         
-* ECF4 CGRB R1,R2,M3,I4 COMPARE R64 AND BRANCH 
-         TESTCAB CGRB,A,64,64  
-* ECF5 CLGRB R1,R2,M3,I4 COMPARE LOGIVSL R64 AND BRANCH 
+         TESTCAB CLIJ,L,32,8
+* ECF4 CGRB R1,R2,M3,I4 COMPARE R64 AND BRANCH
+         TESTCAB CGRB,A,64,64
+* ECF5 CLGRB R1,R2,M3,I4 COMPARE LOGIVSL R64 AND BRANCH
          TESTCAB CLGRB,L,64,64
-* ECF6 CRB R1,R2,M3,I4 COMPARE R32 AND BRANCH 
+* ECF6 CRB R1,R2,M3,I4 COMPARE R32 AND BRANCH
          TESTCAB CRB,A,32,32
-* ECFC CGIB R1,I2,M3,I4 COMPARE IMMEDIATE R64 AND BRANCH 
+* ECFC CGIB R1,I2,M3,I4 COMPARE IMMEDIATE R64 AND BRANCH
          TESTCAB CGIB,A,64,8
 * ECFD CLGIB R1,I2,M3,I4 COMPARE LOG IMMEDIATE R64 AND BRANCH
          TESTCAB CLGIB,L,64,8
-* ECFE CIB R1,I2,M3,I4 COMPARE IMMEDIATE R32 AND BRANCH 
+* ECFE CIB R1,I2,M3,I4 COMPARE IMMEDIATE R32 AND BRANCH
          TESTCAB CIB,A,32,8
 * ECFF CLIB R1,I2,M3,I4 COMPARE LOG IMMEDIATE R32 AND BRANCH
          TESTCAB CLIB,L,32,8
@@ -991,5 +991,4 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   END
          IHAEPIE
          IHASDWA
-         END         
-
+         END

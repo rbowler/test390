@@ -3,10 +3,10 @@
 * This source code is part of z390 assembler/emulator package       *
 * The z390 package is distributed under GNU general public license  *
 * Author - Don Higgins                                              *
-* Date   - 03/03/08 
+* Date   - 03/03/08
 * Remarks. Tests for z196 mainframe problem state instructions
 *********************************************************************
-* 08/06/10 RPI 1125 COPY FROM TESTINS3 AND ADD Z196 INSTRUCTION TESTS 
+* 08/06/10 RPI 1125 COPY FROM TESTINS3 AND ADD Z196 INSTRUCTION TESTS
 * 10/22/10 RPI 1125 ADD RC TEST FOR POPCNT, FIEBRA (SEE FIEBR TESTFB1)
 * 11/10/10 RPI 1125 ADD FIXBRA, FIDBRA
 * 11/11/10 RPI 1125 ADD KDXBRA,LEXBRA,CEFBRA,CDFBRA,CXFBRA
@@ -47,7 +47,7 @@
 *
 * SEE TESTINS1 FOR ASSEMBLY TEST OF ALL POP INSTRUCTIONS
 * SEE TESTINS2 FOR UNIT TEST OF PROB. STATE INSTR. UP TO Z9
-* SEE TESTINS3 FOR UNIT TEST OF PROB. STATE Z10 INSTR. 
+* SEE TESTINS3 FOR UNIT TEST OF PROB. STATE Z10 INSTR.
 * SEE TESTFP1  FOR HFP AND BFP FLOATING POINT INSTR TESTS
 * SEE TESTDFP1 FOR DFP FLOATING POINT INSTR TESTS
 *********************************************************************
@@ -60,7 +60,7 @@ PWORK    DS    D
 WORD     DS    F
 DWORD    DS    D
 BYTE     DS    X
-NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)  
+NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
 *********************************************************************
 * START z196 INSTRUCTION TESTS
 *********************************************************************
@@ -111,17 +111,17 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
          FIEBR R0,0,R1
          CEB   R0,=EB'4'
          RT1   CCE
-* B344 LEDBRA  R1,M3,R2,M4 
+* B344 LEDBRA  R1,M3,R2,M4
          LD    R1,=DB'123'
          LEDBRA R0,1,R1,0
          CEB   R0,=EB'123'
          RT1   CCE
-* B345 LDXBRA  R1,M3,R2,M4 
+* B345 LDXBRA  R1,M3,R2,M4
          LX    R1,=LB'123'
          LDXBRA R0,1,R1,0
          CDB   R0,=DB'123'
          RT1   CCE
-* B346 LEXBRA  R1,M3,R2,M4 
+* B346 LEXBRA  R1,M3,R2,M4
          LX    R1,=LB'123'
          LEXBRA R0,1,R1,0
          CEB   R0,=EB'123'
@@ -141,17 +141,17 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
          LX    R0,=LB'2.5' RPI 518 WAS R2
          FIXBRA R1,0,R0,0
          LX    R4,=LB'2.0'
-         CXBR  R1,R4       
+         CXBR  R1,R4
          RT1   CCE
          LX    R0,=LB'-1.5' RPI 518 WAS R2
          FIXBRA R1,0,R0,0
          LX    R4,=LB'-2.0'
-         CXBR  R1,R4        
+         CXBR  R1,R4
          RT1   CCE
          LX    R0,=LB'-2.5' RPI 518 WAS R2
          FIXBRA R1,0,R0,0
          LX    R4,=LB'-2.0'
-         CXBR  R1,R4         
+         CXBR  R1,R4
          RT1   CCE
 * B357 FIEBRA  R1,M3,R2,M4 (SEE TESTFP1 SRNM FOR FIEBR TEST)
             SRNM  0  DEFAULT ROUND TO NEAREST WITH HALF EVEN
@@ -269,7 +269,7 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
 * B39A CFXBRA
          LX    R1,=LB'123'
          CFXBRA R0,0,R1,0
-         C     R0,=F'123'   
+         C     R0,=F'123'
          RT1   CCE
 * B39C CLFEBR
          LE    R2,=EB'-123'
@@ -287,7 +287,7 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
          LX    R1,=LB'-123'
          CLFXBR R0,0,R1,0
          RT1   CCL
-         C     R0,=F'123'   
+         C     R0,=F'123'
          RT1   CCE
 * B3A0 CELGBR R1,M3,R2,M4
          LG    R2,=XL8'FFFFFC0000000000'
@@ -341,7 +341,7 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
 * B3AA CGXBRA
          LX    R1,=LB'123'
          CGXBRA R0,0,R1,0
-         C     R0,=F'123'   
+         C     R0,=F'123'
          RT1   CCE
 * B3AC CLGEBR
          LE    R2,=EB'-123'
@@ -359,7 +359,7 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
          LX    R1,=LB'-123'
          CLGXBR R0,0,R1,0
          RT1   CCL
-         CG    R0,=FL8'123'   
+         CG    R0,=FL8'123'
          RT1   CCE
 * B3D0 MDTRA
          LD    2,=DD'30'
@@ -546,7 +546,7 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
          SHHHR  R1,R2,R3
          RT1    CC1 NZ B
          CLG    R1,=X'FFFFFFFF00000000'
-         RT1    CCE 
+         RT1    CCE
 * B9CD CHHR     R1,R2
          LG     R1,=X'0000000300000000'
          LG     R2,=X'0000000300000000'
@@ -588,7 +588,7 @@ NIBCNT   DC    AL1(00,01,01,02,01,02,02,03,01,02,02,03,02,03,03,04)
          SHHLR  R1,R2,R3
          RT1    CC1 NZ B
          CLG    R1,=X'FFFFFFFF00000000'
-         RT1    CCE 
+         RT1    CCE
 * B9DD CHLR     R1,R2
          LG     R1,=X'0000000300000000'
          LG     R2,=X'0000000000000003'
@@ -621,7 +621,7 @@ POPCNT_LOOP EQU *
          AR    R4,R5
          CLR   R1,R4
          RT1   CCE            COMPARE CALC WITH TABLE
-         BRCT  R2,POPCNT_LOOP    
+         BRCT  R2,POPCNT_LOOP
          LG    R2,=FL8'0'
          POPCNT R1,R2
          RT1   CCE
@@ -630,12 +630,12 @@ POPCNT_LOOP EQU *
          RT1   CCH
 * B9E2 LOGCR R1,R2,M3
          LG     R1,=FL8'-1'
-         SGR    R0,R0         
+         SGR    R0,R0
          LOCGR  R0,R1,8
          CGR    R0,R1
          RT1    CCE
          LG     R1,=FL8'-1'
-         SGR    R0,R0         
+         SGR    R0,R0
          LOCGR  R0,R1,4
          CG     R0,=FL8'0'
          RT1    CCE
@@ -644,7 +644,7 @@ POPCNT_LOOP EQU *
          LG     R2,=X'FF000000000000FF'
          LG     R3,=X'03FF00000000FF03'
          NGRK   R1,R2,R3
-         RT1    CC1     
+         RT1    CC1
          CLG    R1,=X'0300000000000003'
          RT1    CCE
 * B9E6 OGRK R1,R2,R3
@@ -652,7 +652,7 @@ POPCNT_LOOP EQU *
          LG     R2,=X'FF000000000000FF'
          LG     R3,=X'03FF00000000FF03'
          OGRK   R1,R2,R3
-         RT1    CC1     
+         RT1    CC1
          CLG    R1,=X'FFFF00000000FFFF'
          RT1    CCE
 * B9E7 XGRK R1,R2,R3
@@ -660,7 +660,7 @@ POPCNT_LOOP EQU *
          LG     R2,=X'FF000000000000FF'
          LG     R3,=X'03FF00000000FF03'
          XGRK   R1,R2,R3
-         RT1    CC1     
+         RT1    CC1
          CLG    R1,=X'FCFF00000000FFFC'
          RT1    CCE
 * B9E8 AGRK     R1,R2,R3
@@ -694,15 +694,15 @@ POPCNT_LOOP EQU *
          SLGRK  R1,R2,R3
          RT1    CC1 NZ B
          CLG    R1,=X'FFFFFFFFFFFFFFFF'
-         RT1    CCE 
+         RT1    CCE
 * B9F2 LOGR R1,R2,M3
          L      R1,=F'-1'
-         SR     R0,R0         
+         SR     R0,R0
          LOCR   R0,R1,8
          CR     R0,R1
          RT1    CCE
          L      R1,=FL8'-1'
-         SR     R0,R0         
+         SR     R0,R0
          LOCR   R0,R1,4
          C      R0,=F'0'
          RT1    CCE
@@ -711,7 +711,7 @@ POPCNT_LOOP EQU *
          L      R2,=X'FF0000FF'
          L      R3,=X'03FFFF03'
          NRK   R1,R2,R3
-         RT1    CC1     
+         RT1    CC1
          CL     R1,=X'03000003'
          RT1    CCE
 * B9F6 ORK R1,R2,R3
@@ -719,7 +719,7 @@ POPCNT_LOOP EQU *
          L      R2,=X'FF0000FF'
          L      R3,=X'03FFFF03'
          ORK   R1,R2,R3
-         RT1    CC1     
+         RT1    CC1
          CL    R1,=X'FFFFFFFF'
          RT1    CCE
 * B9F7 XRK R1,R2,R3
@@ -727,7 +727,7 @@ POPCNT_LOOP EQU *
          L      R2,=X'FF0000FF'
          L      R3,=X'03FFFF03'
          XRK   R1,R2,R3
-         RT1    CC1     
+         RT1    CC1
          CL     R1,=X'FCFFFFFC'
          RT1    CCE
 * B9F8 ARK     R1,R2,R3
@@ -761,7 +761,7 @@ POPCNT_LOOP EQU *
          SLRK   R1,R2,R3
          RT1    CC1 NZ B
          CL     R1,=X'FFFFFFFF'
-         RT1    CCE 
+         RT1    CCE
 * C84 LPD       R3,S1,S2
          LPD    R0,=F'123',=F'456'
          CL     R0,=F'123'
@@ -780,7 +780,7 @@ POPCNT_LOOP EQU *
          BRCTH  R1,CC6_SKIP
 CC6_ABORT EQU   *
          DC     X'0000'
-CC6_SKIP EQU    *  
+CC6_SKIP EQU    *
 * CC8 AIH
          SGR   R1,R1
          AIH   R1,123
@@ -1004,7 +1004,7 @@ CC6_SKIP EQU    *
          STOC R0,WORD,8
          CLC  WORD,=F'0'
          RT1  CCE
-* EBF4 LAN 
+* EBF4 LAN
          MVC  WORD,=F'3'
          SR   R0,R0
          L    R1,=F'5'
@@ -1014,7 +1014,7 @@ CC6_SKIP EQU    *
          RT1  CCE
          C    R0,=F'3'
          RT1  CCE
-* EBF6 LAO 
+* EBF6 LAO
          MVC  WORD,=F'3'
          SR   R0,R0
          L    R1,=F'5'
@@ -1024,7 +1024,7 @@ CC6_SKIP EQU    *
          RT1  CCE
          C    R0,=F'3'
          RT1  CCE
-* EBF7 LAX 
+* EBF7 LAX
          MVC  WORD,=F'3'
          SR   R0,R0
          L    R1,=F'5'
@@ -1034,7 +1034,7 @@ CC6_SKIP EQU    *
          RT1  CCE
          C    R0,=F'3'
          RT1  CCE
-* EBF8 LAA 
+* EBF8 LAA
          MVC  WORD,=F'3'
          SR   R0,R0
          L    R1,=F'5'
@@ -1044,7 +1044,7 @@ CC6_SKIP EQU    *
          RT1  CCE
          C    R0,=F'3'
          RT1  CCE
-* EBF8 LAA 
+* EBF8 LAA
          MVC  WORD,=F'3'
          SR   R0,R0
          L    R1,=F'5'
@@ -1057,7 +1057,7 @@ CC6_SKIP EQU    *
 * EC51 RISBLG
          LG    R5,=C'12345678'
          LG    R6,=C'9ABCDEFG'
-         RISBLG R5,R6,0,7,32-8  MOVE G TO FIRST CHAR IN LOW 32       
+         RISBLG R5,R6,0,7,32-8  MOVE G TO FIRST CHAR IN LOW 32
          CG    R5,=C'1234G678'
          RT1   CCE
          LG    R5,=C'12345678'
@@ -1191,7 +1191,7 @@ CC6_SKIP EQU    *
 * EC5D RISBHG
          LG    R5,=C'12345678'
          LG    R6,=C'9ABCDEFG'
-         RISBHG R5,R6,0,7,64-8  MOVE G TO FIRST CHAR IN HIGH 32       
+         RISBHG R5,R6,0,7,64-8  MOVE G TO FIRST CHAR IN HIGH 32
          CLG   R5,=C'G2345678'
          RT1   CCE
          LG    R5,=C'12345678'
@@ -1289,5 +1289,4 @@ CC6_SKIP EQU    *
          RT1   CCE
 * END
          RT1   END
-         END         
-
+         END

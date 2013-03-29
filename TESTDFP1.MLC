@@ -9,8 +9,8 @@
 *********************************************************************
 * Maintenance:
 * 12/09/06 RPI 407 ADD ADTR, SDTR, MDTR, DDTR, CDTR, CSDTR
-* 12/15/06 RPI 518 ADD AXTR, SXTR, MXTR, DXTR                
-* 12/18/06 RPI 406 ADD REMAINING DFP INSTRUCTIONS            
+* 12/15/06 RPI 518 ADD AXTR, SXTR, MXTR, DXTR
+* 12/18/06 RPI 406 ADD REMAINING DFP INSTRUCTIONS
 *   KDTR,  KXTR,  CEDTR, CEXTR, CDGTR, CXGTR, CDSTR, CXSTR
 *   CDUTR, CXUTR, CGDTR, CGXTR, CUDTR, CUXTR, ESDTR, ESXTR
 *   IEDTR, IEXTR, FIDTR, FIXTR
@@ -19,18 +19,18 @@
 *   SLDT,  SLXT   SRDT,  SRXT
 *   TDCDT, TDCET, TDCXT, TDGDT, TDGET, TDGXT
 * 12/29/06 RPI 527 ADD MISSING DFP INS
-*   LPDFR, LNDFR, CPSDR, LCDFR, LDGR, LGDR            
+*   LPDFR, LNDFR, CPSDR, LCDFR, LDGR, LGDR
 * 01/08/07 RPI 527 CORRECT CGDTR, CGXTR ROUNDING
-* 01/10/07 RPI 533 CORRECT CGDTR, CGXTR ROUNDING 
-* 01/12/08 RPI 786 CHANGE BIAS BAASED ON NEW CANONIZATION    
-* 01/13/08 RPI 786 USE FP COMPARES TO HANDLE EQUIVALENT DFP VALUES                    
-* 01/17/08 RPI 790 CORRECT TEST FOR EXPECTED BIAS BASED ON DFP CONST.                 
-* 01/22/08 RPI 791 TEST CGDTR AND CGXTR SETTING CC3 IF TOO BIG                        
+* 01/10/07 RPI 533 CORRECT CGDTR, CGXTR ROUNDING
+* 01/12/08 RPI 786 CHANGE BIAS BAASED ON NEW CANONIZATION
+* 01/13/08 RPI 786 USE FP COMPARES TO HANDLE EQUIVALENT DFP VALUES
+* 01/17/08 RPI 790 CORRECT TEST FOR EXPECTED BIAS BASED ON DFP CONST.
+* 01/22/08 RPI 791 TEST CGDTR AND CGXTR SETTING CC3 IF TOO BIG
 * 02/27/08 RPI 811 TEST THE FOLLOWING FIXES
 *                  1.  CSDTR FIX FOR HIGH DIGIT 0 IF NEGATIVE
-*                  2.  SRDT/SLDT/SRXT/SLXT INCORRECT FOR EXP > 0                        
-* 03/13/08 RPI 820 TEST IEEE DIV,OVF,UNF EXCEPTION HANDLING 
-* 06/20/08 RPI 845 CHANGE EPIED TO IHAEPIE                          
+*                  2.  SRDT/SLDT/SRXT/SLXT INCORRECT FOR EXP > 0
+* 03/13/08 RPI 820 TEST IEEE DIV,OVF,UNF EXCEPTION HANDLING
+* 06/20/08 RPI 845 CHANGE EPIED TO IHAEPIE
 *********************************************************************
          MACRO
 &N       CLCED &S1,&S2
@@ -71,27 +71,27 @@ FPCDXC   EQU   FPCREG+2 REASON CODES FOR 0C7 DATA EXCEPTIONS
 TDCPZ    EQU   X'800' TEST DFP DATA CLASS PLUS  ZERO
 TDCMZ    EQU   X'400' TEST DFP DATA CLASS MINUS ZERO
 TDCPSN   EQU   X'200' TEST DFP DATA CLASS PLUS  SUBNORMAL  <MIN OR >MAX
-TDCMSN   EQU   X'100' TEST DFP DATA CLASS MINUS SUBNORMAL   
+TDCMSN   EQU   X'100' TEST DFP DATA CLASS MINUS SUBNORMAL
 TDCPN    EQU   X'080' TEST DFP DATA CLASS PLUS  NORMAL     IN RANGE
-TDCMN    EQU   X'040' TEST DFP DATA CLASS MINUS NORMAL          
+TDCMN    EQU   X'040' TEST DFP DATA CLASS MINUS NORMAL
 TDCPI    EQU   X'020' TEST DFP DATA CLASS PLUS  INFINITY
 TDCMI    EQU   X'010' TEST DFP DATA CLASS MINUS INFINITY
 TDCPQ    EQU   X'008' TEST DFP DATA CLASS PLUS  QUIET NAN
 TDCMQ    EQU   X'004' TEST DFP DATA CLASS MINUS QUIET NAN
 TDCPSG   EQU   X'002' TEST DFP DATA CLASS PLUS  SIGNAL NAN
 TDCMSG   EQU   X'001' TEST DFP DATA CLASS MINUS SIGNAL NAN
-TDGPSZ   EQU   X'800' TEST DFP DATA GROUP PLUS  SAFE ZERO                  
-TDGMSZ   EQU   X'400' TEST DFP DATA GROUP MINUS SAVE ZERO               
-TDGPEZ   EQU   X'200' TEST DFP DATA GROUP PLUS  EXTREME EXP ZERO        
-TDGMEZ   EQU   X'100' TEST DFP DATA GROUP MINUS EXTREME EXP ZERO        
-TDGPEF   EQU   X'080' TEST DFP DATA GROUP PLUS  EXTRENE FINITE          
-TDGMEF   EQU   X'040' TEST DFP DATA GROUP MINUS EXTREME FINITE          
-TDGPSF   EQU   X'020' TEST DFP DATA GROUP PLUS  SAFE FINITE             
-TDGMSF   EQU   X'010' TEST DFP DATA GROUP MINUS SAFE FINITE             
-TDGPDF   EQU   X'008' TEST DFP DATA GROUP PLUS  FIRST DIGIT NON EXT EXP 
-TDGMDF   EQU   X'004' TEST DFP DATA GROUP MINUS FIRST DIGIT NON EXT EXP 
-TDGPIN   EQU   X'002' TEST DFP DATA GROUP PLUS  INFINITY OR NAN         
-TDGMIN   EQU   X'001' TEST DFP DATA GROUP MINUS INFINITY OR NAM         
+TDGPSZ   EQU   X'800' TEST DFP DATA GROUP PLUS  SAFE ZERO
+TDGMSZ   EQU   X'400' TEST DFP DATA GROUP MINUS SAVE ZERO
+TDGPEZ   EQU   X'200' TEST DFP DATA GROUP PLUS  EXTREME EXP ZERO
+TDGMEZ   EQU   X'100' TEST DFP DATA GROUP MINUS EXTREME EXP ZERO
+TDGPEF   EQU   X'080' TEST DFP DATA GROUP PLUS  EXTRENE FINITE
+TDGMEF   EQU   X'040' TEST DFP DATA GROUP MINUS EXTREME FINITE
+TDGPSF   EQU   X'020' TEST DFP DATA GROUP PLUS  SAFE FINITE
+TDGMSF   EQU   X'010' TEST DFP DATA GROUP MINUS SAFE FINITE
+TDGPDF   EQU   X'008' TEST DFP DATA GROUP PLUS  FIRST DIGIT NON EXT EXP
+TDGMDF   EQU   X'004' TEST DFP DATA GROUP MINUS FIRST DIGIT NON EXT EXP
+TDGPIN   EQU   X'002' TEST DFP DATA GROUP PLUS  INFINITY OR NAN
+TDGMIN   EQU   X'001' TEST DFP DATA GROUP MINUS INFINITY OR NAM
          EQUREGS REGS=GPR
          EQUREGS REGS=FPR
 ESPIE_EXIT DS  0H
@@ -115,7 +115,7 @@ ESPIE_EXIT DS  0H
          LD    5,=DD'2'
          CDTR  1,5
          RT1   CC0
-* B2BD LFAS 
+* B2BD LFAS
          STFPC FPCREG
          OI    FPCREG+3,X'10'
          LFAS  FPCREG SET DFP ROUND MODE 1 - RND TO ZERO
@@ -125,7 +125,7 @@ ESPIE_EXIT DS  0H
          CDTR  1,5
          RT1   CC0
          NI    FPCREG+3,X'8F' RESET DFP RND TO 0 - NEAR HALF EVEN
-         LFAS  FPCREG                                
+         LFAS  FPCREG
          LD    4,=DD'1.5'
          FIDTR 1,0,4,0
          LD    5,=DD'2'
@@ -189,13 +189,13 @@ ESPIE_EXIT DS  0H
          RT1   CC0
          NI    FPCREG+3,X'8F' RESET DFP RND TO 0 - NEAR HALF EVEN
          L     1,FPCREG
-         SFASR 1                                
+         SFASR 1
          LD    4,=DD'1.5'
          FIDTR 1,0,4,0
          LD    5,=DD'2'
          CDTR  1,5
          RT1   CC0
-* B3C1 LDGR 
+* B3C1 LDGR
          LG    2,=DD'1'
          LD    3,=DD'1'
          LDGR  1,2
@@ -206,7 +206,7 @@ ESPIE_EXIT DS  0H
          LDGR  1,2
          CDTR  1,3
          RT1   CC0
-* B3CD LGDR 
+* B3CD LGDR
          LD    2,=DD'1'
          LG    3,=DD'1'
          LGDR  1,2
@@ -233,7 +233,7 @@ ESPIE_EXIT DS  0H
          ESPIE SET,ESPIE_EXIT,7,PARAM=MDTR1 DFP OVERFLOW FPCDXC=20
          LD    R0,=DD'1'
          LD    R1,DDMAX
-         MDTR  R0,R0,R1 
+         MDTR  R0,R0,R1
          RT1   ABORT
 MDTR1    ESPIE RESET
          WTO  'ESPIE DFP MDTR OVERFLOW OK'
@@ -299,7 +299,7 @@ DDTR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=ADTR1 DFP OVERFLOW FPCDXC=20
          LD    R0,DDMAX
          LD    R1,DDMAX
-         ADTR  R0,R0,R1 
+         ADTR  R0,R0,R1
          RT1   ABORT
 ADTR1    ESPIE RESET
          STFPC FPCREG
@@ -331,9 +331,9 @@ ADTR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=SDTR1 DFP UNDERFLOW FPCDXC=10
          LD    R4,DDMIN
          LD    R5,DDMIN
-         ADTR  R4,R4,R5 
+         ADTR  R4,R4,R5
          SDTR  R4,R4,R5
-         RT1   ABORT     
+         RT1   ABORT
 SDTR1    ESPIE RESET
          STFPC FPCREG
          CLI   FPCDXC,X'10'
@@ -409,7 +409,7 @@ SDTR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=MXTR1 DFP OVERFLOW FPCDXC=20
          LX    R0,=LD'1'
          LX    R1,LDMAX
-         MXTR  R0,R0,R1 
+         MXTR  R0,R0,R1
          RT1   ABORT
 MXTR1    ESPIE RESET
          WTO  'ESPIE DFP MXTR OVERFLOW OK'
@@ -475,7 +475,7 @@ DXTR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=AXTR1 DFP OVERFLOW FPCDXC=20
          LX    R0,LDMAX
          LX    R1,LDMAX
-         AXTR  R0,R0,R1 
+         AXTR  R0,R0,R1
          RT1   ABORT
 AXTR1    ESPIE RESET
          STFPC FPCREG
@@ -507,9 +507,9 @@ AXTR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=SXTR1 DFP UNDERFLOW FPCDXC=10
          LX    R4,LDMIN
          LX    R5,LDMIN
-         AXTR  R4,R4,R5 
+         AXTR  R4,R4,R5
          SXTR  R4,R4,R5
-         RT1   ABORT     
+         RT1   ABORT
 SXTR1    ESPIE RESET
          STFPC FPCREG
          CLI   FPCDXC,X'10'
@@ -554,7 +554,7 @@ SXTR1    ESPIE RESET
          CXTR  1,5
          RT1   CC0
          LX    4,=LD'1.5'
-         FIXTR 1,0,4,0       
+         FIXTR 1,0,4,0
          LX    5,=LD'2'
          CXTR  1,5
          RT1   CC0
@@ -618,32 +618,32 @@ SXTR1    ESPIE RESET
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.99'
-         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.99'
-         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.99'
-         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.99'
-         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.99'
-         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.99'
-         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
@@ -654,32 +654,32 @@ SXTR1    ESPIE RESET
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.11'
-         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.11'
-         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.11'
-         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.11'
-         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.11'
-         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.11'
-         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
@@ -690,32 +690,32 @@ SXTR1    ESPIE RESET
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.5'
-         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.5'
-         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.5'
-         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.5'
-         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LD    4,=DD'999.5'
-         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'999.5'
-         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
@@ -724,34 +724,34 @@ SXTR1    ESPIE RESET
          CGDTR 1,8+0,4          RPI 533 NEAREST, HALF EVEN DEFAULT
          RT1   CCH
          CLG   1,=FD'998'
-         RT1   CC0     
+         RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'998'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'998'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'998'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
@@ -759,38 +759,38 @@ SXTR1    ESPIE RESET
          LD    1,=DD'1'
          CUDTR 0,1
          CG    0,=XL8'1'                   RPI 790
-         RT1   CCE 
+         RT1   CCE
          LD    1,=DD'-1'
          CUDTR 0,1
          CG    0,=XL8'1'                   RPI 790
-         RT1   CCE 
-         LD    1,=DD'1234567890123456'     RPI 786 
+         RT1   CCE
+         LD    1,=DD'1234567890123456'     RPI 786
          CUDTR 0,1
          CG    0,=XL8'1234567890123456'    RPI 786
-         RT1   CCE 
+         RT1   CCE
 * B3E3 CSDTR
          LD    1,=DD'1'
          CSDTR 0,1,0
          CG    0,=PL8'1'                   RPI 790
-         RT1   CCE 
+         RT1   CCE
          CSDTR 0,1,1
          CG    0,=XL8'000000000000001F'    RPI 790
-         RT1   CCE 
+         RT1   CCE
          LD    1,=DD'-1'
          CSDTR 0,1,0
          CG    0,=PL8'-1'                  RPI 790
-         RT1   CCE 
+         RT1   CCE
          CSDTR 0,1,1
          CG    0,=XL8'000000000000001D'    RPI 790
-         RT1   CCE 
-         LD    1,=DD'123456789012345'     
+         RT1   CCE
+         LD    1,=DD'123456789012345'
          CSDTR 0,1,0
-         CG    0,=PL8'123456789012345'    
-         RT1   CCE 
-         LD    1,=DD'-123456789012345'     
+         CG    0,=PL8'123456789012345'
+         RT1   CCE
+         LD    1,=DD'-123456789012345'
          CSDTR 0,1,0
-         CG    0,=PL8'-123456789012345'    
-         RT1   CCE 
+         CG    0,=PL8'-123456789012345'
+         RT1   CCE
 * B3E4 CDTR
          LD    1,=DD'1'
          LD    2,=DD'2'
@@ -806,7 +806,7 @@ SXTR1    ESPIE RESET
          RT1   CC2
 * B3E5 EEDTR
          LD    2,=DD'1'
-         EEDTR 1,2                         
+         EEDTR 1,2
          CG    1,=FD'398'                  RPI 790
          RT1   CC0
          LD    2,=DD'1E1'
@@ -887,32 +887,32 @@ SXTR1    ESPIE RESET
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.99'
-         CGXTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGXTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.99'
-         CGXTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGXTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.99'
-         CGXTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGXTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.99'
-         CGXTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGXTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.99'
-         CGXTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGXTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.99'
-         CGXTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGXTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
@@ -923,32 +923,32 @@ SXTR1    ESPIE RESET
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.11'
-         CGXTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGXTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.11'
-         CGXTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGXTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.11'
-         CGXTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGXTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.11'
-         CGXTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGXTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.11'
-         CGXTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGXTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.11'
-         CGXTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGXTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
@@ -959,32 +959,32 @@ SXTR1    ESPIE RESET
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.5'
-         CGXTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGXTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.5'
-         CGXTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGXTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.5'
-         CGXTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGXTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.5'
-         CGXTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGXTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
          LX    4,=LD'999.5'
-         CGXTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGXTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LX    4,=LD'999.5'
-         CGXTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGXTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'1000'
          RT1   CC0
@@ -993,34 +993,34 @@ SXTR1    ESPIE RESET
          CGDTR 1,8+0,4          RPI 533 NEAREST, HALF EVEN DEFAULT
          RT1   CCH
          CLG   1,=FD'998'
-         RT1   CC0     
+         RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO       
+         CGDTR 1,8+1,4          RPI 533 NEAREST, HALF TOWARD ZERO
          RT1   CCH
          CLG   1,=FD'998'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY                
+         CGDTR 1,8+2,4          RPI 533 TOWARD +INFINITY
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY                
+         CGDTR 1,8+3,4          RPI 533 TOWARD -INFINITY
          RT1   CCH
          CLG   1,=FD'998'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0       
+         CGDTR 1,8+4,4          RPI 533 NEAREST, HALF AWAY FROM 0
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0       
+         CGDTR 1,8+5,4          RPI 533 NEAREST, HALF TOWARD 0
          RT1   CCH
          CLG   1,=FD'998'
          RT1   CC0
          LD    4,=DD'998.5'
-         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO               
+         CGDTR 1,8+6,4          RPI 533 AWAY FROM ZERO
          RT1   CCH
          CLG   1,=FD'999'
          RT1   CC0
@@ -1030,50 +1030,50 @@ SXTR1    ESPIE RESET
          CG    0,=XL8'0'
          RT1   CCE
          CG    1,=XL8'1'             RPI 790
-         RT1   CCE 
+         RT1   CCE
          LX    1,=LD'-1'
          CUXTR 0,1
          CG    0,=XL8'0'
          RT1   CCE
          CG    1,=XL8'1'             RPI 790
-         RT1   CCE 
+         RT1   CCE
          LX    1,=LD'1234567890123456789012345678901234'    RPI 788
          CUXTR 0,1
          STMG  0,1,WORK
          CLC   WORK,=XL16'34567890123456789012345678901234' RPI 788
-         RT1   CCE 
+         RT1   CCE
 * B3EB CSXTR
          LX    1,=LD'1'
          CSXTR 0,1,0
-         CG    0,=FL8'0'                    
+         CG    0,=FL8'0'
          RT1   CCE
          CG    1,=PL8'1'                RPI 790
-         RT1   CCE 
+         RT1   CCE
          CSXTR 0,1,1
          CG    0,=FL8'0'
          RT1   CCE
          CG    1,=XL8'000000000000001F' RPI 790
-         RT1   CCE 
+         RT1   CCE
          LX    1,=LD'-1'
          CSXTR 0,1,0
          CG    0,=FL8'0'
          RT1   CCE
          CG    1,=PL8'-1'               RPI 790
-         RT1   CCE 
+         RT1   CCE
          CSXTR 0,1,1
          CG    0,=FL8'0'
          RT1   CCE
          CG    1,=XL8'000000000000001D' RPI 790
-         RT1   CCE 
+         RT1   CCE
          LX    1,=LD'1234567890123456789012345678901234'   RPI 788
          CSXTR 0,1,0
          STMG  0,1,PL16
          CP    PL16,=PL16'4567890123456789012345678901234' RPI 788
-         RT1   CCE 
+         RT1   CCE
 * B3ED EEXTR
          LX    4,=LD'1'
          EEXTR 1,4
-         CG    1,=FD'6176'   RPI 790                        
+         CG    1,=FD'6176'   RPI 790
          RT1   CC0
          LX    4,=LD'1E1'
          EEXTR 1,4
@@ -1161,13 +1161,13 @@ SXTR1    ESPIE RESET
          RT1   CCE
 * B3F6 IEDTR
          LD    4,=DD'1'
-         LG    2,=AD(DD_BIAS) RPI790                           
+         LG    2,=AD(DD_BIAS) RPI790
          IEDTR 1,4,2
          LD    5,=DD'1'       RPI790
          CDTR  1,5
          RT1   CC0
          LD    4,=DD'100'
-         LG    2,=AD(DD_BIAS) RPI 790                              
+         LG    2,=AD(DD_BIAS) RPI 790
          IEDTR 1,4,2
          LD    5,=DD'100'     RPI 790
          CDTR  1,5
@@ -1229,13 +1229,13 @@ SXTR1    ESPIE RESET
          RT1   CCE
 * B3FE IEXTR
          LX    4,=LD'1'
-         LG    2,=AD(LD_BIAS)  RPI 790                           
+         LG    2,=AD(LD_BIAS)  RPI 790
          IEXTR 1,4,2
          LX    5,=LD'1'        RPI 790
          CXTR  1,5
          RT1   CC0
          LX    4,=LD'100'
-         LG    2,=AD(LD_BIAS)  RPI 790                          
+         LG    2,=AD(LD_BIAS)  RPI 790
          IEXTR 1,4,2
          LX    5,=LD'100'      RPI 790
          CXTR  1,5
@@ -1282,12 +1282,12 @@ SXTR1    ESPIE RESET
 * ED41 SRDT
          LD    4,=DD'1234'
          SRDT  1,4,2
-         LD    5,=DD'12'  RPI 790                                
+         LD    5,=DD'12'  RPI 790
          CDTR  1,5
          RT1   CCE
          LD    4,=DD'1234E5'
          SRDT  1,4,2
-         LD    5,=DD'12E5'  RPI 790                                
+         LD    5,=DD'12E5'  RPI 790
          CDTR  1,5
          RT1   CCE
 * ED48 SLXT
@@ -1319,21 +1319,21 @@ SXTR1    ESPIE RESET
 * ED49 SRXT
          LX    4,=LD'1234'
          SRXT  1,4,2
-         LX    5,=LD'12' RPI 790                              
+         LX    5,=LD'12' RPI 790
          CXTR  1,5
          RT1   CCE
          LX    4,=LD'1234E3'
          SRXT  1,4,2
-         LX    5,=LD'12E3' RPI 790                              
+         LX    5,=LD'12E3' RPI 790
          CXTR  1,5
          RT1   CCE
 * ED50 TDCET
          LE    1,=ED'1'
          TDCET 1,TDCPZ
-         RT1   CC0 
+         RT1   CC0
          LE    1,=ED'0'
          TDCET 1,TDCPZ
-         RT1   CC1 
+         RT1   CC1
          LE    1,=ED'-0'
          TDCET 1,TDCMZ
          RT1   CC1
@@ -1352,7 +1352,7 @@ SXTR1    ESPIE RESET
 * ED51 TDGET
          LE    1,=LD'1'
          TDGET 1,TDGPSZ
-         RT1   CC0 
+         RT1   CC0
          LE    1,=ED'0'
          TDGET 1,TDGPSZ
          RT1   CC1
@@ -1386,7 +1386,7 @@ SXTR1    ESPIE RESET
 * ED54 TDCDT
          LD    1,=DD'1'
          TDCDT 1,TDCPZ
-         RT1   CC0 
+         RT1   CC0
          LD    1,=DD'0'
          TDCDT 1,TDCPZ
          RT1   CC1
@@ -1408,7 +1408,7 @@ SXTR1    ESPIE RESET
 * ED55 TDGDT
          LD    1,=DD'1'
          TDGDT 1,TDGPSZ
-         RT1   CC0 
+         RT1   CC0
          LD    1,=DD'0'
          TDGDT 1,TDGPSZ
          RT1   CC1
@@ -1442,10 +1442,10 @@ SXTR1    ESPIE RESET
 * ED58 TDCXT
          LX    1,=LD'1'
          TDCXT 1,TDCPZ
-         RT1   CC0 
+         RT1   CC0
          LX    1,=LD'0'
          TDCXT 1,TDCPZ
-         RT1   CC1 
+         RT1   CC1
          LX    1,=LD'-0'
          TDCXT 1,TDCMZ
          RT1   CC1
@@ -1464,7 +1464,7 @@ SXTR1    ESPIE RESET
 * ED59 TDGXT
          LX    1,=LD'1'
          TDGXT 1,TDGPSZ
-         RT1   CC0 
+         RT1   CC0
          LX    1,=LD'0'
          TDGXT 1,TDGPSZ
          RT1   CC1
@@ -1500,4 +1500,4 @@ SXTR1    ESPIE RESET
 *
          RT1   END
          IHAEPIE
-         END         
+         END

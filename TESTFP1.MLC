@@ -15,25 +15,25 @@
 * SEE TESTINS2 FOR OTHER INSTR UNIT TESTS
 *********************************************************************
 * 11/20/05 RPI106 CORRECT MASK ALIGNMENT FOR SPM
-* 02/08/06 RPI185 ADD MAYR, MYR, MAY, MY 
-* 03/15/06 RPI 229 CORRECT EXTENDED FP REGISTER PAIR USAGE 
-* 05/02/06 RPI 305 UPDATE ESPIE EXIT SUPPORT         
+* 02/08/06 RPI185 ADD MAYR, MYR, MAY, MY
+* 03/15/06 RPI 229 CORRECT EXTENDED FP REGISTER PAIR USAGE
+* 05/02/06 RPI 305 UPDATE ESPIE EXIT SUPPORT
 * 05/02/06 RPI 298 ADD TESTS FOR MAYLR, MYLR, MAYHR, MYHR, MAYL,
 *          MYL, MAYH, MYH
-* 07/03/06 RPI 325 ADD TESTS FOR KEB, KDB errors on exact zero   
-* 07/03/06 RPI 326 ADD TESTS FOR TCEB, TCDB, and TCXB            
-* 07/04/06 RPI 333 ADD TESTS SRNM and FIEBR, FIDBR, and FIXBR    
-* 08/02/06 RPI 367 ADJ LB MIN VALUE REQUIRED TO TRAP FOR KXBR    
-* 12/16/06 RPI 518 CORRECT INVALID PAIR FETCH FOR FIXBR          
+* 07/03/06 RPI 325 ADD TESTS FOR KEB, KDB errors on exact zero
+* 07/03/06 RPI 326 ADD TESTS FOR TCEB, TCDB, and TCXB
+* 07/04/06 RPI 333 ADD TESTS SRNM and FIEBR, FIDBR, and FIXBR
+* 08/02/06 RPI 367 ADJ LB MIN VALUE REQUIRED TO TRAP FOR KXBR
+* 12/16/06 RPI 518 CORRECT INVALID PAIR FETCH FOR FIXBR
 * 03/19/08 RPI 819 CORRECT CFEBR, CFDBR, AND CFXBR TO USE CL VS CG
-* 03/20/08 RPI 824 TEST FLUSH OF LB/LD/LH WHEN CHANGING BD2 REG    
+* 03/20/08 RPI 824 TEST FLUSH OF LB/LD/LH WHEN CHANGING BD2 REG
 * 04/06/08 RPI 834 CORRECT MSE?? AND MSD?? TO SUBTRACT FROM PRODUCT
 *          AND CORRECT TCEB, TCDB, AND TCXB MINUS -0 TESTS
-* 05/16/08 RPI 821 ADD TEST FOR HIGH/LOW DH/LH NIBBLE PRECISION 
-*                  ANDDJUST LBMAX FOR TESTING NEW LIMITS 
-* 05/29/08 RPI 767 ADD TESTS FOR AW, SW, AWR, SWR UNNORMALIZED  
+* 05/16/08 RPI 821 ADD TEST FOR HIGH/LOW DH/LH NIBBLE PRECISION
+*                  ANDDJUST LBMAX FOR TESTING NEW LIMITS
+* 05/29/08 RPI 767 ADD TESTS FOR AW, SW, AWR, SWR UNNORMALIZED
 *                  ADD TESTS FOR AU, SU, AUR, SUR UNNORMALIZED
-* 06/20/08 RPI 845 CHANGE EPIED TO IHAEPIE                          
+* 06/20/08 RPI 845 CHANGE EPIED TO IHAEPIE
 *********************************************************************
          PRINT DATA
          MACRO
@@ -58,7 +58,7 @@ ESPIE_EXIT DS  0H
          ST    R0,EPIEPSW+4
          BR    R14
          DROP  R15,R1
-FPCREG   DS    F 
+FPCREG   DS    F
 FPCDXC   EQU   FPCREG+2 REASON CODES FOR 0C7 DATA EXCEPTIONS
 PWORK    DS    D
 PWORK16  DS    XL16
@@ -68,11 +68,11 @@ DWORD2   DS    D
 BYTE     DS    X
 LWORK    DS    XL16
 EBMIN    DC    EB'1.2E-38'    SEE POP BFP 19-5 (MATCH EZ390 VALUES)
-EBMAX    DC    EB'3.4E+38'                                      
+EBMAX    DC    EB'3.4E+38'
 DBMIN    DC    DB'2.2E-308'
 DBMAX    DC    DB'1.79E+308'  (1.8 too big for double?)
-LBMIN    DC    LB'3.3E-4932'  RPI 396 WAS 3.4 
-LBMAX    DC    LB'1.3E+4932'  RPI 821 WAS 1.2      
+LBMIN    DC    LB'3.3E-4932'  RPI 396 WAS 3.4
+LBMAX    DC    LB'1.3E+4932'  RPI 821 WAS 1.2
 EHMIN    DC    EH'5.4E-79'    SEE POP HFP 18-4
 EHMAX    DC    EH'7.2E+75'
 DHMIN    DC    DH'5.4E-79'
@@ -92,34 +92,34 @@ TDCMQ    EQU   X'004' TEST FP DATA CLASS MINUS QUIET NAN
 TDCPS    EQU   X'002' TEST FP DATA CLASS PLUS  SIGNAL NAN
 TDCMS    EQU   X'001' TEST FP DATA CLASS MINUS SIGNAL NAN
          RT1   START
-         RT1   CCE,=DB'0',=X'0000000000000000'  
+         RT1   CCE,=DB'0',=X'0000000000000000'
          RT1   CCE,=DB'1',=X'3FF0000000000000'
          RT1   CCE,=DB'10',=X'4024000000000000'
          RT1   CCE,=DB'-1',=X'BFF0000000000000'
          RT1   CCE,=DB'-10',=X'C024000000000000'
          RT1   CCE,=DB'3E-1',=X'3FD3333333333333'
-         RT1   CCE,=DH'0',=X'0000000000000000'          
+         RT1   CCE,=DH'0',=X'0000000000000000'
          RT1   CCE,=DH'1',=X'4110000000000000'
          RT1   CCE,=DH'10',=X'41A0000000000000'
          RT1   CCE,=DH'-1',=X'C110000000000000'
          RT1   CCE,=DH'-10',=X'C1A0000000000000'
          RT1   CCE,=DH'3E-1',=X'404CCCCCCCCCCCCD'
-         RT1   CCE,=EB'0',=X'00000000'          
+         RT1   CCE,=EB'0',=X'00000000'
          RT1   CCE,=EB'1',=X'3F800000'
          RT1   CCE,=EB'10',=X'41200000'
          RT1   CCE,=EB'-1',=X'BF800000'
          RT1   CCE,=EB'-10',=X'C1200000'
-         RT1   CCE,=EH'0',=X'00000000'          
+         RT1   CCE,=EH'0',=X'00000000'
          RT1   CCE,=EH'1',=X'41100000'
          RT1   CCE,=EH'10',=X'41A00000'
          RT1   CCE,=EH'-1',=X'C1100000'
          RT1   CCE,=EH'-10',=X'C1A00000'
-         RT1   CCE,=LB'0',=X'00000000000000000000000000000000'  
+         RT1   CCE,=LB'0',=X'00000000000000000000000000000000'
          RT1   CCE,=LB'1',=X'3FFF0000000000000000000000000000'
          RT1   CCE,=LB'10',=X'40024000000000000000000000000000'
          RT1   CCE,=LB'-1',=X'BFFF0000000000000000000000000000'
          RT1   CCE,=LB'-10',=X'C0024000000000000000000000000000'
-         RT1   CCE,=LH'0',=X'00000000000000000000000000000000'  
+         RT1   CCE,=LH'0',=X'00000000000000000000000000000000'
          RT1   CCE,=LH'1',=X'41100000000000003300000000000000'
          RT1   CCE,=LH'10',=X'41A00000000000003300000000000000'
          RT1   CCE,=LH'-1',=X'C110000000000000B300000000000000'
@@ -326,7 +326,7 @@ MDR1     ESPIE RESET
          DDR   R0,R1
          CD    R0,=DH'1.5'
          RT1   CCE
-         ESPIE SET,ESPIE_EXIT,15,PARAM=DDR1 HFP DIVIDE   
+         ESPIE SET,ESPIE_EXIT,15,PARAM=DDR1 HFP DIVIDE
          LD    R0,=DH'1'
          LD    R1,=DH'0'
          DDR   R0,R1
@@ -496,9 +496,9 @@ DDR1     ESPIE RESET
          CDR   R0,R1
          RT1   CCE         RPI 824 VERIFY R0 HAS FIRST HALF OF LH'6'
          LX    0,=X'4E000000000000000000000000000001' RPI 821 TEST LH
-         LX    1,=X'4E800000000000000000000000000000' HFP PRECISION    
+         LX    1,=X'4E800000000000000000000000000000' HFP PRECISION
          AXR   0,1
-         STX   0,LWORK            
+         STX   0,LWORK
          RT1   CCE,LWORK,=X'4E800000000000004000000000000001'
 * 37   SXR
          LX    R0,=LH'1'
@@ -590,7 +590,7 @@ DDR1     ESPIE RESET
          DER   R0,R1
          CE    R0,=EH'1.5'
          RT1   CCE
-         ESPIE SET,ESPIE_EXIT,15,PARAM=DER1 HFP DIVIDE   
+         ESPIE SET,ESPIE_EXIT,15,PARAM=DER1 HFP DIVIDE
          LE    R0,=EH'1'
          LE    R1,=EH'0'
          DER   R0,R1
@@ -691,9 +691,9 @@ DER1     ESPIE RESET
          CD    R0,=DH'0'
          RT1   CCE
          LD    0,=X'4E00000000000001' RPI 821 TEST 56 BIT PRECISION
-         AD    0,=X'4E80000000000000' HFP WITH UNIT AS LAST DIGIT    
-         STD   0,DWORD             
-         RT1   CCE,DWORD,=X'4E80000000000001'             
+         AD    0,=X'4E80000000000000' HFP WITH UNIT AS LAST DIGIT
+         STD   0,DWORD
+         RT1   CCE,DWORD,=X'4E80000000000001'
 * 6B   SD
          LD    R0,=DH'3'
          SD    R0,=DH'2'
@@ -710,7 +710,7 @@ DER1     ESPIE RESET
          RT1   CCE
          CD    R0,=DH'0'
          RT1   CCE
-* 6C   MD 
+* 6C   MD
          LD    R0,=DH'2'
          MD    R0,=DH'3'
          CD    R0,=DH'6'
@@ -720,7 +720,7 @@ DER1     ESPIE RESET
          DD    R0,=DH'2'
          CD    R0,=DH'1.5'
          RT1   CCE
-         ESPIE SET,ESPIE_EXIT,15,PARAM=DD1 HFP DIVIDE   
+         ESPIE SET,ESPIE_EXIT,15,PARAM=DD1 HFP DIVIDE
          LD    R0,=DH'1'
          DD    R0,=DH'0'
          RT1   ABORT
@@ -805,7 +805,7 @@ DD1      ESPIE RESET
          RT1   CCE
          CE    R0,=EH'0'
          RT1   CCE
-         ESPIE SET,ESPIE_EXIT,12,PARAM=AE1 HFP OVERFLOW 
+         ESPIE SET,ESPIE_EXIT,12,PARAM=AE1 HFP OVERFLOW
          LE    R0,EHMAX
          AE    R0,EHMAX
          RT1   ABORT
@@ -855,7 +855,7 @@ SE2      ESPIE RESET
          STE   R0,WORD
          CLC   WORD,=EH'1.5'
          RT1   CCE
-         ESPIE SET,ESPIE_EXIT,15,PARAM=DE1 HFP DIVIDE        
+         ESPIE SET,ESPIE_EXIT,15,PARAM=DE1 HFP DIVIDE
          LE    R0,=EH'1'
          DE    R0,=EH'0'
          RT1   ABORT
@@ -922,7 +922,7 @@ DE1      ESPIE RESET
          DXR   R0,R1
          CXR   R0,R4
          RT1   CCE
-         ESPIE SET,ESPIE_EXIT,15,PARAM=DXR1 HFP DIVIDE        
+         ESPIE SET,ESPIE_EXIT,15,PARAM=DXR1 HFP DIVIDE
          LX    R0,=LH'1'
          LX    R1,=LH'0'
          DXR   R0,R1
@@ -938,7 +938,7 @@ DXR1     ESPIE RESET
          SQER  R0,R1
          CE    R0,=EH'2'
          RT1   CCE
-* B299 SRNM   
+* B299 SRNM
          SRNM  0  DEFAULT ROUND TO NEAREST WITH HALF EVEN
          LE    R1,=EB'2.5'
          FIEBR R0,0,R1
@@ -1109,7 +1109,7 @@ DXR1     ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=KEBR1 BFP OVERFLOW FPCDXC=20
          LE    R0,=EB'1'
          LE    R1,EBMAX
-         KEBR  R0,R1 
+         KEBR  R0,R1
          RT1   ABORT
 KEBR1    ESPIE RESET
          STFPC FPCREG
@@ -1118,7 +1118,7 @@ KEBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=KEBR2 BFP UNDERFLOW FPCDXC=10
          LE    R0,EBMIN
          LE    R1,=EB'1'
-         KEBR  R0,R1 
+         KEBR  R0,R1
          RT1   ABORT
 KEBR2    ESPIE RESET
          STFPC FPCREG
@@ -1159,7 +1159,7 @@ KEBR2    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=AEBR1 BFP OVERFLOW FPCDXC=20
          LE    R0,EBMAX
          LE    R1,EBMAX
-         AEBR  R0,R1 
+         AEBR  R0,R1
          RT1   ABORT
 AEBR1    ESPIE RESET
          STFPC FPCREG
@@ -1188,7 +1188,7 @@ AEBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=SEBR1 BFP UNDERFLOW FPCDXC=10
          LE    R0,EBMIN
          LE    R1,EBMIN
-         AEBR  R0,R1 
+         AEBR  R0,R1
          SEBR  R0,R1
          RT1   ABORT
 SEBR1    ESPIE RESET
@@ -1361,7 +1361,7 @@ DEBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=KDBR1 BFP OVERFLOW FPCDXC=20
          LD    R0,=DB'1'
          LD    R1,DBMAX
-         KDBR  R0,R1 
+         KDBR  R0,R1
          RT1   ABORT
 KDBR1    ESPIE RESET
          STFPC FPCREG
@@ -1370,7 +1370,7 @@ KDBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=KDBR2 BFP UDERFLOW FPCDXC=10
          LD    R0,DBMIN
          LD    R1,=DB'1'
-         KDBR  R0,R1 
+         KDBR  R0,R1
          RT1   ABORT
 KDBR2    ESPIE RESET
          STFPC FPCREG
@@ -1411,7 +1411,7 @@ KDBR2    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=ADBR1 BFP OVERFLOW FPCDXC=20
          LD    R0,DBMAX
          LD    R1,DBMAX
-         ADBR  R0,R1 
+         ADBR  R0,R1
          RT1   ABORT
 ADBR1    ESPIE RESET
          STFPC FPCREG
@@ -1440,7 +1440,7 @@ ADBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=SDBR1 BFP UNDERFLOW FPCDXC=10
          LD    R0,DBMIN
          LD    R1,DBMIN
-         ADBR  R0,R1 
+         ADBR  R0,R1
          SDBR  R0,R1
          RT1   ABORT
 SDBR1    ESPIE RESET
@@ -1699,17 +1699,17 @@ DDBR1    ESPIE RESET
          LX    R0,=LB'2.5' RPI 518 WAS R2
          FIXBR R1,0,R0
          LX    R4,=LB'2.0'
-         CXBR  R1,R4       
+         CXBR  R1,R4
          RT1   CCE
          LX    R0,=LB'-1.5' RPI 518 WAS R2
          FIXBR R1,0,R0
          LX    R4,=LB'-2.0'
-         CXBR  R1,R4        
+         CXBR  R1,R4
          RT1   CCE
          LX    R0,=LB'-2.5' RPI 518 WAS R2
          FIXBR R1,0,R0
          LX    R4,=LB'-2.0'
-         CXBR  R1,R4         
+         CXBR  R1,R4
          RT1   CCE
 * B348 KXBR
          LX    R0,=LB'-1'
@@ -1727,7 +1727,7 @@ DDBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=KXBR1 BFP OVERFLOW FPCDXC=20
          LX    R0,=LB'1'
          LX    R1,LBMAX
-         KXBR  R0,R1 
+         KXBR  R0,R1
          RT1   ABORT
 KXBR1    ESPIE RESET
          STFPC FPCREG
@@ -1736,7 +1736,7 @@ KXBR1    ESPIE RESET
          ESPIE SET,ESPIE_EXIT,7,PARAM=KXBR2 BFP UNDERFLOW FPCDXC=10
          LX    R0,LBMIN
          LX    R1,=LB'1'
-         KXBR  R0,R1 
+         KXBR  R0,R1
          RT1   ABORT
 KXBR2    ESPIE RESET
          STFPC FPCREG
@@ -1768,19 +1768,19 @@ KXBR2    ESPIE RESET
          AXBR  R0,R1
          RT1   CCL
          LX    R1,=LB'-1'
-         CXBR  R0,R1      
+         CXBR  R0,R1
          RT1   CCE
          LX    R0,=LB'1'
          LX    R1,=LB'-1'
          AXBR  R0,R1
          RT1   CCE
          LX    R1,=LB'0'
-         CXBR  R0,R1      
+         CXBR  R0,R1
          RT1   CCE
          ESPIE SET,ESPIE_EXIT,7,PARAM=AXBR1 BFP OVERFLOW FPCDXC=20
          LX    R0,LBMAX
          LX    R1,LBMAX
-         AXBR  R0,R1 
+         AXBR  R0,R1
          RT1   ABORT
 AXBR1    ESPIE RESET
          STFPC FPCREG
@@ -1793,26 +1793,26 @@ AXBR1    ESPIE RESET
          SXBR  R0,R1
          RT1   CCH
          LX    R1,=LB'1'
-         CXBR  R0,R1    
+         CXBR  R0,R1
          RT1   CCE
          LX    R0,=LB'1'
          LX    R1,=LB'2'
          SXBR  R0,R1
          RT1   CCL
          LX    R1,=LB'-1'
-         CXBR  R0,R1       
+         CXBR  R0,R1
          RT1   CCE
          LX    R0,=LB'1'
          LX    R1,=LB'1'
          SXBR  R0,R1
          RT1   CCE
          LX    R1,=LB'0'
-         CXBR  R0,R1    
+         CXBR  R0,R1
          RT1   CCE
          ESPIE SET,ESPIE_EXIT,7,PARAM=SXBR1 BFP UNDERFLOW FPCDXC=10
          LX    R0,LBMIN
          LX    R1,LBMIN
-         AXBR  R0,R1 
+         AXBR  R0,R1
          SXBR  R0,R1
          RT1   ABORT
 SXBR1    ESPIE RESET
@@ -1840,7 +1840,7 @@ SXBR2    ESPIE RESET
          LX    R1,=LB'3'
          MXBR  R0,R1
          LX    R1,=LB'6'
-         CXBR  R0,R1     
+         CXBR  R0,R1
          RT1   CCE
 * B34D DXBR
          LX    R0,=LB'3'
@@ -2006,7 +2006,7 @@ DXBR1    ESPIE RESET
 * B365 LXR
          LX    R1,=LH'123'
          LXR   R0,R1
-         CXR   R0,R1       
+         CXR   R0,R1
          RT1   CCE
 * B366 LEXR
          LX    R1,=LH'123'
@@ -2049,7 +2049,7 @@ DXBR1    ESPIE RESET
          LX    R0,=LH'1'
          LZXR  R0
          LX    R4,=LH'0'
-         CXR   R0,R4    
+         CXR   R0,R4
          RT1   CCE
 * B377 FIER
          LE    R2,=EH'1.5'
@@ -2075,7 +2075,7 @@ DXBR1    ESPIE RESET
          L     R2,=F'123'
          CXFBR R0,R2
          LX    R4,=LB'123'
-         CXBR  R0,R4        
+         CXBR  R0,R4
          RT1   CCE
 * B398 CFEBR
          LE    R2,=EB'123'
@@ -2090,7 +2090,7 @@ DXBR1    ESPIE RESET
 * B39A CFXBR
          LX    R1,=LB'123'
          CFXBR R0,0,R1
-         C     R0,=F'123'   
+         C     R0,=F'123'
          RT1   CCE
 * B3A4 CEGBR
          LG    R2,=FL8'123'
@@ -2106,7 +2106,7 @@ DXBR1    ESPIE RESET
          LG    R2,=FL8'123'
          CXGBR R0,R2
          LX    R4,=LB'123'
-         CXBR  R0,R4        
+         CXBR  R0,R4
          RT1   CCE
 * B3A8 CGEBR
          LE    R2,=EB'123'
@@ -2137,7 +2137,7 @@ DXBR1    ESPIE RESET
          L     R2,=F'123'
          CXFR  R0,R2
          LX    R4,=LH'123'
-         CXR   R0,R4        
+         CXR   R0,R4
          RT1   CCE
 * B3B8 CFER
          LE    R2,=EH'123'
@@ -2152,7 +2152,7 @@ DXBR1    ESPIE RESET
 * B3BA CFXR
          LX    R1,=LH'123'
          CFXR  R0,0,R1
-         C     R0,=F'123'   
+         C     R0,=F'123'
          RT1   CCE
 * B3C4 CEGR
          LG    R2,=FL8'123'
@@ -2168,7 +2168,7 @@ DXBR1    ESPIE RESET
          LG    R2,=FL8'123'
          CXGR  R0,R2
          LX    R4,=LH'123'
-         CXR   R0,R4        
+         CXR   R0,R4
          RT1   CCE
 * B3C8 CGER
          LE    R2,=EH'123'
@@ -2183,18 +2183,18 @@ DXBR1    ESPIE RESET
 * B3CA CGXR
          LX    R1,=LH'123'
          CGXR  R0,0,R1
-         CG    R0,=FL8'123'   
+         CG    R0,=FL8'123'
          RT1   CCE
 * ED04 LDEB
          LDEB  R0,=EB'1'
          CDB   R0,=DB'1'
          RT1   CCE
-* ED05 LXDB 
+* ED05 LXDB
          LXDB  R0,=DB'1'
          LX    R4,=LB'1'
          CXBR  R0,R4
          RT1   CCE
-* ED06 LXEB 
+* ED06 LXEB
          LXEB  R0,=EB'1'
          LX    R4,=LB'1'
          CXBR  R0,R4
@@ -2238,7 +2238,7 @@ KEB1     ESPIE RESET
          RT1   CCE
          ESPIE SET,ESPIE_EXIT,7,PARAM=KEB2 BFP UNDERFLOW FPCDXC=10
          LE    R0,EBMIN
-         KEB   R0,=EB'1' 
+         KEB   R0,=EB'1'
          RT1   ABORT
 KEB2     ESPIE RESET
          STFPC FPCREG
@@ -2304,13 +2304,13 @@ DEB1     ESPIE RESET
          STFPC FPCREG
          CLI   FPCDXC,X'40'
          RT1   CCE
-* ED0E MAEB 
+* ED0E MAEB
          LE    R1,=EB'1'
          LE    R3,=EB'3'
          MAEB  R1,R3,=EB'2'
          CEB   R1,=EB'7'
          RT1   CCE
-* ED0F MSEB 
+* ED0F MSEB
          LE    R0,=EB'1'
          LE    R1,=EB'2'
          MSEB  R0,R1,=EB'3'
@@ -2403,7 +2403,7 @@ KDB1     ESPIE RESET
          RT1   CCE
          ESPIE SET,ESPIE_EXIT,7,PARAM=KDB2 BFP UNDERFLOW FPCDXC=10
          LD    R0,DBMIN
-         KDB   R0,=DB'1' 
+         KDB   R0,=DB'1'
          RT1   ABORT
 KDB2     ESPIE RESET
          STFPC FPCREG
@@ -2473,27 +2473,27 @@ KDB2     ESPIE RESET
          MSDB  R0,R1,=DB'3'
          CDB   R0,=DB'5'  RPI 834
          RT1   CCE
-* ED24 LDE 
+* ED24 LDE
          LDE   R0,=EH'123'
          CD    R0,=DH'123'
          RT1   CCE
-* ED25 LXD 
+* ED25 LXD
          LXD   R0,=DH'123'
          LX    R4,=LH'123'
          CXR   R0,R4
          RT1   CCE
-* ED26 LXE 
+* ED26 LXE
          LXE   R0,=EH'123'
          LX    R4,=LH'123'
          CXR   R0,R4
          RT1   CCE
-* ED2E MAE 
+* ED2E MAE
          LE    R0,=EH'1'
          LE    R1,=EH'2'
          MAE   R0,R1,=EH'3'
          CE    R0,=EH'7'
          RT1   CCE
-* ED2F MSE 
+* ED2F MSE
          LE    R0,=EH'1'
          LE    R1,=EH'2'
          MSE   R0,R1,=EH'3'
@@ -2507,7 +2507,7 @@ KDB2     ESPIE RESET
          SQD   R0,=DH'4'
          CD    R0,=DH'2'
          RT1   CCE
-* ED37 MEE 
+* ED37 MEE
          LE    R0,=EH'2'
          MEE   R0,=EH'3'
          CE    R0,=EH'6'
@@ -2547,7 +2547,7 @@ KDB2     ESPIE RESET
          MYH   R0,R1,=D'2'
          CD    R0,=DH'6'  RPI 767 FIX TEST
          RT1   CCE
-* ED3E MAD 
+* ED3E MAD
          LD    R0,=DH'1'
          LD    R1,=DH'2'
          MAD   R0,R1,=DH'3'
@@ -2586,4 +2586,4 @@ KDB2     ESPIE RESET
          RT1   CCE
          RT1   END
          IHAEPIE
-         END         
+         END

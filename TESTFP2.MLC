@@ -5,7 +5,7 @@
 * Author - Don Higgins                                              *
 * Date   - 03/09/09                                                 *
 *********************************************************************
-         TITLE 'TESTFP2 - TEST PFPO CONVERT RADIX INSTRUCTION'     
+         TITLE 'TESTFP2 - TEST PFPO CONVERT RADIX INSTRUCTION'
 *********************************************************************
 * 03/09/09 RPI 1013 TEST PFPO CONVERSION BETWEEN ANY TWO FP TYPES
 *********************************************************************
@@ -28,7 +28,7 @@ DB       EQU   6
 LB       EQU   7
 ED       EQU   8
 DD       EQU   9
-LD       EQU   10 
+LD       EQU   10
          RT1   START
          MACRO
          TESTPFPO &FP1_TYPE,&FP2_TYPE,&NUM
@@ -40,7 +40,7 @@ LD       EQU   10
          LX    F4,=&FP2_TYPE'&NUM'
        AEND
          L     R0,=AL1(1,&FP1_TYPE,&FP2_TYPE,0)
-         SER   F0,F0 FORCE REG AND CACHE TO ZERO                 
+         SER   F0,F0 FORCE REG AND CACHE TO ZERO
          SER   F2,F2 FORCE REG AND CACHE TO ZERO
          PFPO
        AIF   ('&FP1_TYPE'(1,1) EQ 'E')
@@ -160,4 +160,4 @@ LD       EQU   10
          TESTPFPO LD,DD,123
          TESTPFPO LD,LD,123
          RT1   END
-         END         
+         END
