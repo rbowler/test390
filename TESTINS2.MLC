@@ -1971,7 +1971,8 @@ PC2      EQU   *
          RT1   OK
 .NOPCTST ANOP
 * B222 IPM
-         SR    0,0
+         L     0,=X'CFFFFFFF'
+         SPM   0
          IPM   0
          CLM   0,8,=B'00001111' 00CCFPES CC=00 MASK=1111 FX,PD,EX,SG
          RT1   CCE
