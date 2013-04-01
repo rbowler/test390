@@ -193,7 +193,7 @@ PR1      EQU   *
          BALR  2,0
          USING *,2
          WTO   'PR1 SUB CALLED'
-         LA    2,2  REQUEST PSW                    RPI 1026
+         LA    2,1  REQUEST PSW                    @20130401
          ESTA  0,2  EXTRACT RETURN PSW INTO R0-R1  RPI 1026
          MVI   ESTACC,0
          JZ    *+8
@@ -216,7 +216,7 @@ PR1      EQU   *
 PR2      EQU   *
          CLI   ESTACC,1 PC TYPE
          RT1   CCE
-         CLC   ESTAPSW(8),=A(0,PCRET1)
+         CLC   ESTAPSW+4(4),=A(PCRET1)             @20130401
          RT1   CCE           RPI 1026
          CLC   EREGSAVE,=A(222,444)
          RT1   CCE
@@ -1981,13 +1981,14 @@ PC2      EQU   *
          CLM   0,8,=B'00101111' 00CCFPES CC=10 MASK=1111 FX,PD,EX,SG
          RT1   CCE
 * B240 BAKR
+         SAM24 ,                                   @20130401
          LA    R0,1
          LA    R1,BAKR2
          LA    R2,BAKR1
          BAKR  R1,R2
          RT1   ABORT
 BAKR1    WTO   'BAKR1 SUB CALLED'
-         LA    2,2  REQUEST PSW                    RPI 1026
+         LA    2,1  REQUEST PSW                    @20130401
          ESTA  0,2  EXTRACT RETURN PSW INTO R0-R1  RPI 1026
          MVI   ESTACC,0
          JZ    *+8
@@ -1997,13 +1998,14 @@ BAKR1    WTO   'BAKR1 SUB CALLED'
 BAKR2    EQU   *
          CLI   ESTACC,0 BAKR TYPE
          RT1   CCE
-         CLC   ESTAPSW(8),=A(0,BAKR2)
+         CLC   ESTAPSW+4(4),=A(BAKR2)              @20130401
          RT1   CCE           RPI 1026
+         SAM31 ,                                   @20130401
          BAKR  0,R2
 BAKR3    EQU   *
          CLI   ESTACC,0 BAKR TYPE
          RT1   CCE
-         CLC   ESTAPSW(8),=A(0,BALR3)
+         CLC   ESTAPSW+4(4),=A(X'80000000'+BAKR3)  @20130401
          RT1   CCE           RPI 1026
 * B249 EREG    R1,R2 RESTORE 32 BIT REGISTERS SEE PC/BAKR
 * B24A ESTA    R1,R1 (SEE PC AND BAKR TESTS WITH ESTA,EREG,EREGG
