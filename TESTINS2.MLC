@@ -2165,6 +2165,7 @@ SEBR2    ESPIE RESET,=F'0'
          RT1   CCH
          CLG   R0,=FL8'1'
          RT1   CCE
+         SPM   R0
          LG    R1,=X'8000000000000000'
          LPGR  R0,R1
          RT1   CC3
