@@ -608,12 +608,12 @@ MVC3     MVC   PWORK(0),=C'1234'
          RT1   CCE
          GETMAIN R,LV=8000
          LR    R6,R1
-         LHI   R7,8000     R7 = MVCOS LENGTH
+         LHI   R7,2048     R7 = MVCOS LENGTH
          LHI   R0,0        R0 = ALL CONTROL BITS OFF
          CLI   =C'A',C'B'  SET CC NZ
          LA    R5,0
          MVCOS 0(R6),0(R5),R7  RPI 859 COPY PSA TO GETMAIN AREA
-         RT1   CC3
+         RT1   CC0
          LR    R0,R5
          LR    R1,R7
          CLCL  R6,R0           RPI 859 COPMARE PAS TO GETMAIN AREA
