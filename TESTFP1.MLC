@@ -69,10 +69,13 @@ BYTE     DS    X
 LWORK    DS    XL16
 EBMIN    DC    EB'1.2E-38'    SEE POP BFP 19-5 (MATCH EZ390 VALUES)
 EBMAX    DC    EB'3.4E+38'
+EBQNAN   DC    X'7FC00000'
 DBMIN    DC    DB'2.2E-308'
 DBMAX    DC    DB'1.79E+308'  (1.8 too big for double?)
+DBQNAN   DC    X'7FF8000000000000'
 LBMIN    DC    LB'3.3E-4932'  RPI 396 WAS 3.4
 LBMAX    DC    LB'1.3E+4932'  RPI 821 WAS 1.2
+LBQNAN   DC    X'7FFF800000000000',X'0000000000000000'
 EHMIN    DC    EH'5.4E-79'    SEE POP HFP 18-4
 EHMAX    DC    EH'7.2E+75'
 DHMIN    DC    DH'5.4E-79'
@@ -1105,23 +1108,16 @@ DXR1     ESPIE RESET,=F'0'
          LE    R1,=EB'-1'
          KEBR  R0,R1
          RT1   CCH
-         ESPIE SET,ESPIE_EXIT,7,PARAM=KEBR1 BFP OVERFLOW FPCDXC=20
+         ESPIE SET,ESPIE_EXIT,7,PARAM=KEBR1 BFP INVALID FPCDXC=80
+         LFPC  =X'80000000'       SET IEEE-INVALID MASK
          LE    R0,=EB'1'
-         LE    R1,EBMAX
+         LE    R1,EBQNAN
          KEBR  R0,R1
          RT1   ABORT
 KEBR1    ESPIE RESET,=F'0'
+         WTO   'ESPIE BFP KEBR INVALID OK'
          STFPC FPCREG
-         CLI   FPCDXC,X'20'
-         RT1   CCE
-         ESPIE SET,ESPIE_EXIT,7,PARAM=KEBR2 BFP UNDERFLOW FPCDXC=10
-         LE    R0,EBMIN
-         LE    R1,=EB'1'
-         KEBR  R0,R1
-         RT1   ABORT
-KEBR2    ESPIE RESET,=F'0'
-         STFPC FPCREG
-         CLI   FPCDXC,X'10'
+         CLI   FPCDXC,X'80'
          RT1   CCE
 * B309 CEBR
          LE    R0,=EB'-1'
@@ -1357,23 +1353,16 @@ DEBR1    ESPIE RESET,=F'0'
          LD    R1,=DB'-1'
          KDBR  R0,R1
          RT1   CCH
-         ESPIE SET,ESPIE_EXIT,7,PARAM=KDBR1 BFP OVERFLOW FPCDXC=20
+         ESPIE SET,ESPIE_EXIT,7,PARAM=KDBR1 BFP INVALID FPCDXC=80
+         LFPC  =X'80000000'       SET IEEE-INVALID MASK
          LD    R0,=DB'1'
-         LD    R1,DBMAX
+         LD    R1,DBQNAN
          KDBR  R0,R1
          RT1   ABORT
 KDBR1    ESPIE RESET,=F'0'
+         WTO   'ESPIE BFP KDBR INVALID OK'
          STFPC FPCREG
-         CLI   FPCDXC,X'20'
-         RT1   CCE
-         ESPIE SET,ESPIE_EXIT,7,PARAM=KDBR2 BFP UDERFLOW FPCDXC=10
-         LD    R0,DBMIN
-         LD    R1,=DB'1'
-         KDBR  R0,R1
-         RT1   ABORT
-KDBR2    ESPIE RESET,=F'0'
-         STFPC FPCREG
-         CLI   FPCDXC,X'10'
+         CLI   FPCDXC,X'80'
          RT1   CCE
 * B319 CDBR
          LD    R0,=DB'-1'
@@ -1723,23 +1712,16 @@ DDBR1    ESPIE RESET,=F'0'
          LX    R1,=LB'-1'
          KXBR  R0,R1
          RT1   CCH
-         ESPIE SET,ESPIE_EXIT,7,PARAM=KXBR1 BFP OVERFLOW FPCDXC=20
+         ESPIE SET,ESPIE_EXIT,7,PARAM=KXBR1 BFP INVALID FPCDXC=80
+         LFPC  =X'80000000'       SET IEEE-INVALID MASK
          LX    R0,=LB'1'
-         LX    R1,LBMAX
+         LX    R1,LBQNAN
          KXBR  R0,R1
          RT1   ABORT
 KXBR1    ESPIE RESET,=F'0'
+         WTO   'ESPIE BFP KXBR INVALID OK'
          STFPC FPCREG
-         CLI   FPCDXC,X'20'
-         RT1   CCE
-         ESPIE SET,ESPIE_EXIT,7,PARAM=KXBR2 BFP UNDERFLOW FPCDXC=10
-         LX    R0,LBMIN
-         LX    R1,=LB'1'
-         KXBR  R0,R1
-         RT1   ABORT
-KXBR2    ESPIE RESET,=F'0'
-         STFPC FPCREG
-         CLI   FPCDXC,X'10'
+         CLI   FPCDXC,X'80'
          RT1   CCE
 * B349 CXBR
          LX    R0,=LB'-1'
