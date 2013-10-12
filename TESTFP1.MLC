@@ -828,8 +828,7 @@ AE1      ESPIE RESET,=F'0'
          CE    R0,=EH'0'
          RT1   CCE
          ESPIE SET,ESPIE_EXIT,13,PARAM=SE1 HFP UNDERFLOW
-         LE    R0,EHMIN
-         AE    R0,EHMIN
+         LE    R0,=X'00100001'
          SE    R0,EHMIN
          RT1   ABORT
 SE1      ESPIE RESET,=F'0'
