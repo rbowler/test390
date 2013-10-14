@@ -1531,10 +1531,13 @@ DDBR1    ESPIE RESET,=F'0'
          RT1   CCE
          LX    R1,=LH'2'
          SQXR  R0,R1
+         LX    R4,=X'4116A09E667F3BCC33908B2FB1366EA9'
+         CXR   R0,R4
+         RT1   CCE
          MXR   R0,R0
          SXR   R0,R1
          LPXR  R0,R0
-         LX    R4,=LH'1E-34'
+         LX    R4,=LB'1E-33' RPI 821 WAS 1E-34 DSHX
          CXR   R0,R4
          RT1   CCL
 * B337 MEER
