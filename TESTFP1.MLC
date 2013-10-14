@@ -1860,6 +1860,7 @@ DXBR1    ESPIE RESET,=F'0'
          CDB   R0,=DB'123'
          RT1   CCE
 * B353 DIEBR
+         SRNM  1  ROUND TOWARDS ZERO
          LE    R1,=EB'7'
          LE    R2,=EB'2'
          DIEBR R1,R3,R2,0
@@ -1869,6 +1870,7 @@ DXBR1    ESPIE RESET,=F'0'
          CEB   R3,=EB'3'
          RT1   CCE
 * B357 FIEBR
+         SRNM  0  ROUND TO NEAREST WITH TIES TO EVEN
          LE    R2,=EB'1.1'
          FIEBR R1,0,R2
          CEB   R1,=EB'1.0'
@@ -1902,7 +1904,7 @@ DXBR1    ESPIE RESET,=F'0'
 * B35B DIDBR
          LD    R1,=DB'7'
          LD    R2,=DB'2'
-         DIDBR R1,R3,R2,0
+         DIDBR R1,R3,R2,5  ROUND TOWARDS ZERO
          RT1   CCE
          CDB   R1,=DB'1'
          RT1   CCE
