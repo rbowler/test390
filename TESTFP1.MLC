@@ -2283,6 +2283,7 @@ KEB1     ESPIE RESET,=F'0'
          CEB   R0,=EB'1.5'
          RT1   CCE
          ESPIE SET,ESPIE_EXIT,7,PARAM=DEB1 BFP DIVIDE FPCDXC=40
+         LFPC  =X'40000000'       SET IEEE-DIVZERO MASK
          LE    R0,=EB'1'
          DEB   R0,=EB'0'
          RT1   ABORT
